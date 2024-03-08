@@ -1,0 +1,448 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Variable.Global.sFileDir.Declare(String)
+Variable.UDT.uRem.Define("Part",String)
+Variable.UDT.uRem.Define("Rem",String)
+Variable.UDT.uRem.Define("Rev",String)
+Variable.UDT.uRem.Define("Loc",String)
+Variable.UDT.uRem.Define("Lot",String)
+Variable.UDT.uRem.Define("Bin",String)
+Variable.UDT.uRem.Define("Heat",String)
+Variable.UDT.uRem.Define("Img",String)
+Variable.uGlobal.uRem.Declare("uRem")
+Variable.Global.sImageDir.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+
+F.ODBC.Connection!Con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+' verify the license
+F.Intrinsic.Control.CallSub(Licenseverification)
+' find the file path
+F.Intrinsic.Control.CallSub(Logincredentials)
+' process the feedback files
+F.Intrinsic.Control.CallSub(Processfile)
+' that's all folks
+F.Intrinsic.Control.CallSub(Unload)
+
+
+Program.Sub.Main.End
+
+Program.Sub.LicenseVerification.Start
+F.Intrinsic.Control.SetErrorHandler("LicenseVerification_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.bLicensed.Declare(Boolean)
+
+' if license is not found, the script will end
+f.Global.General.IsLicensedByModuleName("NES",v.Local.bLicensed)
+F.Intrinsic.Control.If(V.Local.bLicensed,=,False)
+	F.Intrinsic.Control.End
+
+F.Intrinsic.Control.EndIf
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("LicenseVerification_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3849_SigmaNest_Remnants.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.LicenseVerification.End
+
+Program.Sub.Logincredentials.Start
+F.Intrinsic.Control.SetErrorHandler("Logincredentials_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSel.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sHold.Declare(String)
+V.Local.sVal.Declare(String)
+V.Local.bRet.Declare(Boolean)
+V.Local.sFile.Declare(String)
+V.Local.iFor.Declare(Long)
+V.Local.iFoundRecs.Declare(Long)
+
+
+' see if the credential file is found
+F.Intrinsic.String.Build("{0}\SNLIC.dat",V.Caller.FilesDir,V.Local.sFile)
+F.Intrinsic.File.Exists(V.Local.sFile,V.Local.bRet)
+
+' if the file is found, look for the COMPLETE line
+F.Intrinsic.Control.If(V.Local.bRet,=,True)
+	F.Intrinsic.File.File2String(V.Local.sFile,V.Local.sRet)
+	F.Intrinsic.String.Split(V.Local.sRet,V.Ambient.NewLine,V.Local.sRet)
+	F.Intrinsic.Control.For(V.Local.iFor,V.Local.sRet.LBound,V.Local.sRet.UBound,1)
+		F.Intrinsic.String.Split(V.Local.sRet(v.Local.iFor),"::",V.Local.sHold)
+		V.Local.sHold.RedimPreserve(0,1)
+		F.Intrinsic.Control.SelectCase(V.Local.sHold(0).ucase)
+		F.Intrinsic.Control.Case("REMNANTS")
+			V.Global.sFileDir.Set(V.Local.sHold(1))
+			F.Intrinsic.Control.If(V.Global.sFileDir.right1,<>,"\")
+				F.Intrinsic.String.Build("{0}\",V.Global.sFileDir,V.Global.sFileDir)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Case("IMAGE")
+			V.Global.sImageDir.Set(V.Local.sHold(1))
+			F.Intrinsic.Control.If(V.Global.sImageDir.right1,<>,"\")
+				F.Intrinsic.String.Build("{0}\",V.Global.sImageDir,V.Global.sImageDir)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndSelect
+	F.Intrinsic.Control.Next(V.Local.iFor)
+F.Intrinsic.Control.EndIf
+
+' if the path is found,send it back.  otherwise end the script
+F.Intrinsic.Control.If(V.Global.sFileDir,=,"")
+	F.Intrinsic.UI.Msgbox("Remnant File Path Not Found.  Check SNLIC file.")
+	F.Intrinsic.Control.End
+
+F.Intrinsic.Control.EndIf
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Logincredentials_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3849_SigmaNest_Remnants.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Logincredentials.End
+
+Program.Sub.ProcessFile.Start
+F.Intrinsic.Control.SetErrorHandler("ProcessFile_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sFileName.Declare(String)
+V.Local.sFileList.Declare(String)
+V.Local.iForFile.Declare(Long)
+V.Local.iForRow.Declare(Long)
+V.Local.sFileData.Declare(String)
+V.Local.sValues.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.sRev.Declare(String)
+V.Local.sItemData.Declare(String)
+V.Local.sIssRec.Declare(String)
+V.Local.sHold.Declare(String)
+V.Local.sFileText.Declare(String)
+V.Local.sSerial.Declare(String)
+V.Local.sDrop.Declare(String)
+V.Local.sIssueFile.Declare(String)
+V.Local.sParams.Declare(String)
+V.Local.fQty.Declare(String)
+V.Local.iRet.Declare(Long)
+V.Local.sBackup.Declare(String)
+V.Local.sMaterial.Declare(String)
+V.Local.sSel.Declare(String)
+V.Local.sInvdetails.Declare(String)
+V.Local.fOrigQty.Declare(Float)
+V.Local.sSQL.Declare(String)
+V.Local.sHeat.Declare(String)
+v.Local.iCount.Declare(long)
+v.Local.sOrgRem.Declare(string)
+V.Local.sTempMaterial.Declare(String)
+V.Local.bValidate.Declare(Boolean)
+V.Local.sValidateError.Declare(String)
+
+' all files in the specified path should be remnant feedback
+F.Intrinsic.File.GetFileList(V.Global.sFileDir.Trim,1,V.Local.sFileList)
+
+' if no files are found, nothing to do
+F.Intrinsic.Control.If(V.Local.sFileList.Trim,=,"")
+	F.Intrinsic.Control.CallSub(Unload)
+F.Intrinsic.Control.EndIf
+
+' for each file found, split on each line.
+F.Intrinsic.String.Split(V.Local.sFileList,":",V.Local.sFileList)
+
+F.Intrinsic.UI.InvokeWaitDialog("Reading Remnant Files","SigmaNest Remnant Import")
+
+F.Intrinsic.Control.For(V.Local.iForFile,V.Local.sFileList.LBound,V.Local.sFileList.UBound,1)
+	F.Intrinsic.UI.ChangeWaitStatus("Reading Remnant Files",V.Local.iForFile,0,V.Local.sFileList.UBound)
+	F.Intrinsic.String.Build("{0}{1}",V.Global.sFileDir,V.Local.sFileList(v.Local.iForFile),V.Local.sFileName)
+
+	F.Intrinsic.File.File2String(V.Local.sFileName,V.Local.sFileData)
+	F.Intrinsic.String.Split(V.Local.sFileData,V.Ambient.NewLine,V.Local.sFileData)
+
+	' for each line split to get details
+	' details will be: ProgramName, SheetName, RemnantName, OrigSheetName, Material, Thickness, Length, Width, Qty, TaskName, RemArea, PrimeCode, Mill, BinNumber, HeatNumber, Location, RemWeight
+	' for each line, create an Issue from the OriginalSheetName and a Receipt for the RemnantName
+	' First row will be header, so start at 1, not 0
+	F.Intrinsic.Control.For(V.Local.iForRow,1,V.Local.sFileData.UBound,1)
+		F.Intrinsic.Control.If(V.Local.sFileData(V.Local.iForRow),=,"*!*@#@")
+			F.Intrinsic.Control.Next(V.Local.iForRow)		
+		F.Intrinsic.Control.ElseIf(V.Local.sFileData(V.Local.iForRow),=,"")
+			F.Intrinsic.Control.ExitFor(V.Local.iForRow)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.SplitCSV(V.Local.sFileData(v.Local.iForRow),V.Local.sValues)
+		V.Local.sValues.RedimPreserve(0,16)
+		v.Local.sOrgRem.Set(v.Local.sValues(2).Trim)
+		F.Intrinsic.String.Build("_{0}",V.Local.sValues(14),V.Local.sHeat)
+		F.Intrinsic.String.Replace(V.Local.sValues(2),V.Local.sHeat,"",V.Local.sValues(2))
+		F.Intrinsic.String.Replace(V.Local.sValues(1),V.Local.sHeat,"",V.Local.sValues(1))
+		F.Intrinsic.String.Replace(V.Local.sValues(3),V.Local.sHeat,"",V.Local.sValues(3))
+		' make sure it is a valid line (qty will be > 0)
+		F.Intrinsic.Math.IsNumeric(V.Local.sValues(8),V.Local.bValidate)
+		
+		F.Intrinsic.Control.If(v.Local.bValidate,=,True)
+			F.Intrinsic.Control.If(V.Local.sValues(8).Float,>,0)
+				' get % of original sheet, for qty that was dropped
+				F.Intrinsic.Math.IsNumeric(V.Local.sValues(10),V.Local.bValidate)
+				
+				F.Intrinsic.Control.If(V.Local.bValidate,=,True)
+					V.Local.fQty.Set(V.Local.sValues(10).Float)
+				F.Intrinsic.Control.Else
+					F.Intrinsic.String.Build("RemArea Column is not Numeric in file {0}. Exiting Program",V.Local.sFileName,V.Local.sValidateError)
+					F.Intrinsic.UI.Msgbox(V.Local.sValidateError)
+					F.Intrinsic.Control.CallSub(Unload)
+				F.Intrinsic.Control.EndIf
+				
+				F.Intrinsic.String.IsInString(V.Local.sValues(1),"X",False,V.Local.bValidate)
+				
+				F.Intrinsic.Control.If(V.Local.bValidate,=,False)
+					F.Intrinsic.String.Build("SheetName Column is not formatted correctly in file {0}. Exiting Program",V.Local.sFileName,V.Local.sValidateError)
+					F.Intrinsic.UI.Msgbox(V.Local.sValidateError)
+					F.Intrinsic.Control.CallSub(Unload)
+				F.Intrinsic.Control.EndIf
+				
+				' Part will be Material+Thickness+X+Length+X+Width.  split on X to get the dimensions
+				F.Intrinsic.String.Split(V.Local.sValues(1),"X",V.Local.sMaterial)
+				V.Local.sMaterial.RedimPreserve(0,2)
+				'We need to split the width on a "-" because of the remnants. Otherwise you're getting bad data
+				F.Intrinsic.String.Split(V.Local.sMaterial(2),"-",V.Local.sTempMaterial)
+	
+				F.Intrinsic.Math.IsNumeric(V.Local.sMaterial(1),V.Local.bValidate)
+				
+				F.Intrinsic.Control.If(V.Local.bValidate,=,False)
+					F.Intrinsic.String.Build("Dimension on part is not Numeric in file {0}. Exiting Program",V.Local.sFileName,V.Local.sValidateError)
+					F.Intrinsic.UI.Msgbox(V.Local.sValidateError)
+					F.Intrinsic.Control.CallSub(Unload)
+				F.Intrinsic.Control.EndIf
+				
+				F.Intrinsic.Math.IsNumeric(V.Local.sTempMaterial(0),V.Local.bValidate)
+				
+				F.Intrinsic.Control.If(V.Local.bValidate,=,False)
+					F.Intrinsic.String.Build("Dimension on part is not Numeric in file {0}. Exiting Program",V.Local.sFileName,V.Local.sValidateError)
+					F.Intrinsic.UI.Msgbox(V.Local.sValidateError)
+					F.Intrinsic.Control.CallSub(Unload)
+				F.Intrinsic.Control.EndIf
+				
+				F.Intrinsic.Math.Mult(V.Local.sMaterial(1).Float,V.Local.sTempMaterial(0).Float,V.Local.fOrigQty)
+				' divide remnant qty by original qty, to get % of the sheet
+				F.Intrinsic.Control.If(V.Local.fOrigQty,<>,0)
+					F.Intrinsic.Math.Div(V.Local.fQty,V.Local.fOrigQty,V.Local.fQty)
+					F.Intrinsic.Math.Round(V.Local.fQty,4,1,V.Local.fQty)
+				f.Intrinsic.Control.Else
+					v.Local.fQty.Set(0)
+				F.Intrinsic.Control.EndIf
+	
+				' ==== Issue text - from original material
+				V.Local.sIssRec.Set("I")
+				V.Local.sDrop.Set("")
+	
+				' see if original material was a remnant
+				F.Intrinsic.String.Split(V.Local.sValues(1),"-",V.Local.sHold)
+				F.Intrinsic.Control.If(V.Local.sHold.UBound,=,0)
+					'source sheet used was not a remnant sheet
+					V.Local.sSerial.Set("")
+					V.Local.sPart.Set(V.Local.sValues(1))
+					
+					' Part, Rev, Loc, Qty, Description, Lot,Bin, Hea, Serial, I/R, Drop
+					F.Intrinsic.String.Build("{0},{1},{2},{3},,{4},{5},{6},{7},{8},{9},,,,",V.Local.sPart.Trim,V.Local.sRev.Trim,V.Local.sValues(15),V.Local.fQty,V.Local.sValues(12),V.Local.sValues(13),V.Local.sValues(14),V.Local.sSerial,V.Local.sIssRec,V.Local.sDrop,V.Local.sHold)
+					F.Intrinsic.String.Build("{0}{1}{2}",V.Local.sFileText,V.Local.sHold,V.Ambient.NewLine,V.Local.sFileText)
+	
+				F.Intrinsic.Control.Else
+					'source sheet used was itself a remnant
+					V.Local.sSerial.Set(V.Local.sValues(1))
+					V.Local.sPart.Set(V.Local.sHold(0))
+			
+					' Part, Rev, Loc, Qty, Description, Lot,Bin, Hea, Serial, I/R, Drop
+					F.Intrinsic.String.Build("{0},{1},{2},{3},,{4},{5},{6},{7},{8},{9},,,,",V.Local.sPart.Trim,V.Local.sRev.Trim,V.Local.sValues(15),V.Local.fQty,V.Local.sValues(12),V.Local.sValues(13),V.Local.sValues(14),V.Local.sSerial,V.Local.sIssRec,V.Local.sDrop,V.Local.sHold)
+					F.Intrinsic.String.Build("{0}{1}{2}",V.Local.sFileText,V.Local.sHold,V.Ambient.NewLine,V.Local.sFileText)
+	
+				F.Intrinsic.Control.EndIf
+	
+				' ==== Receipt
+				V.Local.sSerial.Set(V.Local.sValues(1).Trim)
+				' create the inventory part for the new remnant using the same information as the original full sheet - value stored in PrimeCode field of upload file
+				F.Intrinsic.String.Build("select a.Description,a.UM_Inventory, a.Product_Line, b.Code_Source,a.Amt_Price, b.lbs from Inventory_Mstr a, Inventory_Mst2 b where a.Part = b.Part and a.Location = b.Location and a.Part = '{0}' and a.Location = '{1}' ",V.Local.sValues(11),V.Local.sValues(15),V.Local.sSel)
+				F.ODBC.Connection!Con.ExecuteAndReturn(V.Local.sSel,V.Local.sInvdetails)
+				
+				F.Intrinsic.String.Split(V.Local.sInvdetails,"*!*",V.Local.sInvdetails)
+				V.Local.sInvdetails.RedimPreserve(0,5)
+				
+				V.Local.sPart.Set(V.Local.sValues(2).Trim)
+				F.Global.Inventory.CreatePart(V.Local.sPart.Trim,V.Local.sInvdetails(1).Trim,V.Local.sInvdetails(0).Trim,V.Local.sValues(15).Trim,V.Local.sInvdetails(2).Trim,V.Local.sInvdetails(3).Trim,,,V.Local.sInvdetails(4).Float,"NOMAINT")
+				
+				' receipt text
+				V.Local.sIssRec.Set("R")
+				V.Local.sDrop.Set("")
+				
+				' Part, Rev, Loc, Qty, Description, Lot,Bin, Hea, Serial, I/R, Drop
+				F.Intrinsic.String.Build("{0},{1},{2},{3},,{4},{5},{6},{7},{8},{9},,,,",V.Local.sPart.Trim,V.Local.sRev.Trim,V.Local.sValues(15),V.Local.fQty,V.Local.sValues(12),V.Local.sValues(13),V.Local.sValues(14),V.Local.sSerial,V.Local.sIssRec,V.Local.sDrop,V.Local.sHold)
+				F.Intrinsic.String.Build("{0}{1}{2}",V.Local.sFileText,V.Local.sHold,V.Ambient.NewLine,V.Local.sFileText)
+	
+				' make sure part is flagged as Lot/Bin
+				F.Intrinsic.String.Build("update Inventory_Mstr set Flag_Lot = 'Y', Flag_Drop = 'Y' where Part = '{0}'",V.Local.sPart.Trim,V.Local.sSel)
+				F.ODBC.Connection!Con.Execute(V.Local.sSel)
+				
+				F.Intrinsic.String.Build("update Inventory_Mst2 set LBS = '{0}' where Part = '{1}'",V.Local.sInvdetails(5),V.Local.sPart.Trim,V.Local.sSel)
+				F.ODBC.Connection!Con.Execute(V.Local.sSel)
+								
+				v.uGlobal.uRem.RedimPreserve(0,v.Local.iCount)
+				v.uGlobal.uRem(v.Local.iCount)!Part.Set(v.Local.sPart.Trim)
+				v.uGlobal.uRem(v.Local.iCount)!Rev.Set(v.Local.sRev.Trim)				
+				v.uGlobal.uRem(v.Local.iCount)!Loc.Set(v.Local.sValues(15).Trim)
+				v.uGlobal.uRem(v.Local.iCount)!Lot.Set(v.Local.sValues(12).Trim)				
+				v.uGlobal.uRem(v.Local.iCount)!Bin.Set(v.Local.sValues(13).Trim)				
+				v.uGlobal.uRem(v.Local.iCount)!Heat.Set(v.Local.sValues(14).Trim)
+				v.uGlobal.uRem(v.Local.iCount)!Rem.Set(v.Local.sValues(2).Trim)
+				v.uGlobal.uRem(v.Local.iCount)!Img.Set(v.Local.sOrgRem.Trim)
+				f.Intrinsic.Math.Add(v.Local.iCount,1,v.Local.iCount)
+	
+			F.Intrinsic.Control.EndIf
+			
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Build("Qty Column is not Numeric in file {0}. Exiting Program",V.Local.sFileName,V.Local.sValidateError)
+			F.Intrinsic.UI.Msgbox(V.Local.sValidateError)
+			F.Intrinsic.Control.CallSub(Unload)
+		F.Intrinsic.Control.EndIf
+		
+	F.Intrinsic.Control.Next(V.Local.iForRow)
+
+F.Intrinsic.Control.Next(V.Local.iForFile)
+
+F.Intrinsic.Control.CallSub(Backupdir)
+	
+F.Intrinsic.Control.For(V.Local.iForFile,V.Local.sFileList.LBound,V.Local.sFileList.UBound,1)
+	F.Intrinsic.UI.ChangeWaitStatus("Transfering remnant files to Processed",V.Local.iForFile,0,V.Local.sFileList.UBound)
+	F.Intrinsic.String.Build("{0}{1}",V.Global.sFileDir,V.Local.sFileList(v.Local.iForFile),V.Local.sFileName)
+	F.Intrinsic.String.Build("{0}Processed\{1}",V.Global.sFileDir,V.Local.sFileList(v.Local.iForFile),V.Local.sBackup)
+	' move file to backup, before processing
+	F.Intrinsic.File.MoveFile(V.Local.sFileName,V.Local.sBackup,V.Local.iRet)
+	F.Intrinsic.Control.If(V.Local.iRet,=,0)
+		V.Local.sError.Set("File Access Error")
+		F.Intrinsic.Control.GoTo("EXIT")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iForFile)
+
+'' build the upload file and call the callwrapper
+F.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.UI.InvokeWaitDialog("Running Global Shop Import","SigmaNest Remnant Import")
+
+F.Intrinsic.String.Build("{0}\{1}Drop.txt",V.Caller.FilesDir,V.Caller.CompanyCode,V.Local.sIssueFile)
+F.Intrinsic.File.String2File(V.Local.sIssueFile,V.Local.sFileText)
+F.Intrinsic.String.Concat(V.Ambient.DblQuote,V.Caller.CompanyCode,"Drop.txt",V.Ambient.DblQuote,V.Local.sIssueFile)
+F.Intrinsic.Task.LaunchGSSSync("WIR104","-C",V.Local.sIssueFile)
+
+'now that everything has posted and we have the serials now we can add the documents
+f.Intrinsic.Control.CallSub(doccntrl)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("ProcessFile_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3849_SigmaNest_Remnants.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription," in File ",V.Local.sFileName,V.Local.sError)
+	F.Intrinsic.Control.Label("EXIT")
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.ProcessFile.End
+
+Program.Sub.Unload.Start
+F.ODBC.Connection!Con.Close
+F.Intrinsic.Control.End
+Program.Sub.Unload.End
+
+Program.Sub.backupDIr.Start
+V.Local.bExists.Declare(Boolean)
+V.Local.sDir.Declare(String)
+
+F.Intrinsic.String.Build("{0}\Processed",V.Global.sFileDir,V.Local.sDir)
+F.Intrinsic.File.DirExists(V.Local.sDir,V.Local.bExists)
+
+F.Intrinsic.Control.If(V.Local.bExists,=,False)
+	F.Intrinsic.File.CreateDir(V.Local.sDir)
+F.Intrinsic.Control.EndIf
+Program.Sub.backupDIr.End
+
+Program.Sub.docCntrl.Start
+F.Intrinsic.Control.SetErrorHandler("docCntrl_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.ID.Declare(Long)
+V.Local.sRet.Declare(String)
+V.Local.bExists.Declare(Boolean)
+v.Local.iCount.Declare(long)
+V.Local.sPart.Declare(string)
+v.Local.sLoc.Declare(string)
+v.Local.sLot.Declare(string)
+v.Local.sBin.Declare(string)
+v.Local.sHeat.Declare(string)
+v.Local.sSerial.Declare(string)
+v.Local.sLink.Declare(string)
+
+'loop though the UDT and add the documents
+f.Intrinsic.Control.If(v.uGlobal.uRem.UBound,>,-1)
+	f.Intrinsic.Control.For(v.Local.iCount,v.uGlobal.uRem.LBound,v.uGlobal.uRem.UBound,1)
+		F.Intrinsic.Control.If(V.uGlobal.uRem(V.Local.iCount)!Part,<>,"")
+			' see if there is an image file, for the part
+			F.Intrinsic.String.Build("{0}{1}.bmp",V.Global.sImageDir,v.uGlobal.uRem(v.Local.iCount)!Img.Trim,V.Local.sRet)
+			F.Intrinsic.File.Exists(V.Local.sRet,V.Local.bExists)
+			
+			F.Intrinsic.Control.If(V.Local.bExists)
+				'Create the Link ID
+				'Part Rev Loc Lot Bin Heat Serial
+				f.Intrinsic.String.RPad(v.uGlobal.uRem(v.Local.iCount)!Part.Trim," ",20,v.Local.sPart)
+				f.Intrinsic.String.RPad(v.uGlobal.uRem(v.Local.iCount)!Loc.Trim," ",2,V.Local.sLoc)
+				F.Intrinsic.String.RPad(v.uGlobal.uRem(v.Local.iCount)!Lot.Trim," ",15,V.Local.sLot)
+				F.Intrinsic.String.RPad(v.uGlobal.uRem(v.Local.iCount)!Bin.Trim," ",6,V.Local.sBin)
+				F.Intrinsic.String.RPad(v.uGlobal.uRem(v.Local.iCount)!Heat.Trim," ",15,V.Local.sHeat)
+				F.Intrinsic.String.RPad(v.uGlobal.uRem(v.Local.iCount)!Rem.Trim," ",30,V.Local.sSerial)
+				f.Intrinsic.String.Build("{0}{1}{2}{3}{4}{5}",v.Local.sPart,v.Local.sLoc,v.Local.sLot,v.Local.sBin,v.Local.sHeat,v.Local.sSerial,v.Local.sLink)
+		
+				' The part number will be the document key
+				F.Global.DocumentControl.CreateReference(v.Local.sLink,31,V.Local.ID)
+				F.Global.DocumentControl.AddDocument(V.Local.ID,V.Local.sRet,v.uGlobal.uRem(v.Local.iCount)!Img.Trim,1,"BMP")
+			F.Intrinsic.Control.EndIf
+			
+		F.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.Next(v.Local.iCount)
+
+f.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("docCntrl_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3849_SigmaNest_Remnants.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.docCntrl.End
+
+Program.Sub.Comments.Start
+${$0$}$SigmaNest_Remnants$}$JCT$}$5/21/2015 8:57:52 AM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$Read feedback csv file from SigmaNest for remnant Parts.
+Parts will be added to GS Inventory as Lot/Bin Parts using callwrapper 3550 to create stand alone Issue (from original Part) and Receipt (for Remnant)
+
+Remnants will have the same Part number as the original Part from which they were dropped, with the SN Remnant Name as the Serial Number.
+The csv layout will be:
+ProgramName, SheetName, RemnantName, OrigSheetName, Material, Thickness, Length, Width, Qty, TaskName, RemArea, PrimeCode, Mill, BinNumber, HeatNumber, Location, RemWeight
+Program.Sub.Comments.End
+
