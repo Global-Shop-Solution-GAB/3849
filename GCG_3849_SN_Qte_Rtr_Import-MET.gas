@@ -1,0 +1,1799 @@
+Program.Sub.ScreenSU.Start
+gui.SS_Form1..create
+gui.SS_Form1..caption("SN Imports")
+gui.SS_Form1..size(2175,2760)
+gui.SS_Form1..minx(0)
+gui.SS_Form1..miny(0)
+gui.SS_Form1..position(0,0)
+gui.SS_Form1..event(unload,Unload)
+gui.SS_Form1..alwaysontop(False)
+gui.SS_Form1..fontname("Arial")
+gui.SS_Form1..fontsize(8)
+gui.SS_Form1..forecolor(0)
+gui.SS_Form1..fontstyle(,,,,)
+gui.SS_Form1..BackColor(-2147483633)
+gui.SS_Form1..controlbox(True)
+gui.SS_Form1..maxbutton(False)
+gui.SS_Form1..minbutton(False)
+gui.SS_Form1..mousepointer(0)
+gui.SS_Form1..moveable(True)
+gui.SS_Form1..sizeable(False)
+gui.SS_Form1..ShowInTaskBar(True)
+gui.SS_Form1..titlebar(True)
+gui.SS_Form1.cmdQte.create(button)
+gui.SS_Form1.cmdQte.caption("Quote Import")
+gui.SS_Form1.cmdQte.visible(True)
+gui.SS_Form1.cmdQte.size(1645,765)
+gui.SS_Form1.cmdQte.zorder(0)
+gui.SS_Form1.cmdQte.position(130,180)
+gui.SS_Form1.cmdQte.enabled(True)
+gui.SS_Form1.cmdQte.fontname("Arial")
+gui.SS_Form1.cmdQte.fontsize(8)
+gui.SS_Form1.cmdQte.event(click,cmdqte_click)
+gui.SS_Form1.cmdQte.defaultvalue("")
+gui.SS_Form1.cmdQte.controlgroup(0)
+gui.SS_Form1.cmdRtr.create(button)
+gui.SS_Form1.cmdRtr.caption("Router Import")
+gui.SS_Form1.cmdRtr.visible(True)
+gui.SS_Form1.cmdRtr.size(1645,765)
+gui.SS_Form1.cmdRtr.zorder(0)
+gui.SS_Form1.cmdRtr.position(130,1160)
+gui.SS_Form1.cmdRtr.enabled(True)
+gui.SS_Form1.cmdRtr.fontname("Arial")
+gui.SS_Form1.cmdRtr.fontsize(8)
+gui.SS_Form1.cmdRtr.event(click,cmdrtr_click)
+gui.SS_Form1.cmdRtr.defaultvalue("")
+gui.SS_Form1.cmdRtr.controlgroup(0)
+gui.SS_Form1.cmdQte.tabstop(true)
+gui.SS_Form1.cmdQte.tabindex(1)
+gui.SS_Form1.cmdRtr.tabstop(true)
+gui.SS_Form1.cmdRtr.tabindex(2)
+
+
+gui.Form2..create
+gui.Form2..caption("Range Selection")
+gui.Form2..size(4935,2220)
+gui.Form2..minx(0)
+gui.Form2..miny(0)
+gui.Form2..position(0,0)
+gui.Form2..event(unload,form2_unload)
+gui.Form2..alwaysontop(False)
+gui.Form2..fontname("Arial")
+gui.Form2..fontsize(8)
+gui.Form2..forecolor(0)
+gui.Form2..fontstyle(,,,,)
+gui.Form2..BackColor(-2147483633)
+gui.Form2..controlbox(True)
+gui.Form2..maxbutton(True)
+gui.Form2..minbutton(True)
+gui.Form2..mousepointer(0)
+gui.Form2..moveable(True)
+gui.Form2..sizeable(True)
+gui.Form2..ShowInTaskBar(True)
+gui.Form2..titlebar(True)
+gui.Form2.txt1.create(textbox,"",True,1425,300,0,200,500,True,0,Arial,8,-2147483643,1)
+gui.Form2.txt1.defaultvalue("")
+gui.Form2.txt1.controlgroup(1)
+gui.Form2.cmdBegBrwse.create(button)
+gui.Form2.cmdBegBrwse.caption("^")
+gui.Form2.cmdBegBrwse.visible(True)
+gui.Form2.cmdBegBrwse.size(480,300)
+gui.Form2.cmdBegBrwse.zorder(0)
+gui.Form2.cmdBegBrwse.position(1685,500)
+gui.Form2.cmdBegBrwse.enabled(True)
+gui.Form2.cmdBegBrwse.fontname("Arial")
+gui.Form2.cmdBegBrwse.fontsize(8)
+gui.Form2.cmdBegBrwse.event(click,cmdbegbrwse_click)
+gui.Form2.cmdBegBrwse.defaultvalue("")
+gui.Form2.cmdBegBrwse.controlgroup(0)
+gui.Form2.txt2.create(textbox,"",True,1425,300,0,2435,500,True,0,Arial,8,-2147483643,1)
+gui.Form2.txt2.defaultvalue("")
+gui.Form2.txt2.controlgroup(1)
+gui.Form2.cmdEndBrwse.create(button)
+gui.Form2.cmdEndBrwse.caption("^")
+gui.Form2.cmdEndBrwse.visible(True)
+gui.Form2.cmdEndBrwse.size(480,300)
+gui.Form2.cmdEndBrwse.zorder(0)
+gui.Form2.cmdEndBrwse.position(3960,500)
+gui.Form2.cmdEndBrwse.enabled(True)
+gui.Form2.cmdEndBrwse.fontname("Arial")
+gui.Form2.cmdEndBrwse.fontsize(8)
+gui.Form2.cmdEndBrwse.event(click,cmdendbrwse_click)
+gui.Form2.cmdEndBrwse.defaultvalue("")
+gui.Form2.cmdEndBrwse.controlgroup(0)
+gui.Form2.lblBEG.create(label,"From Quote/Router",True,1425,255,1,200,245,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblBEG.defaultvalue("")
+gui.Form2.lblBEG.controlgroup(0)
+gui.Form2.lblEND.create(label,"To Quote/Router",True,1425,255,1,2435,245,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblEND.defaultvalue("")
+gui.Form2.lblEND.controlgroup(0)
+gui.Form2.cmdOk.create(button)
+gui.Form2.cmdOk.caption("Ok")
+gui.Form2.cmdOk.visible(True)
+gui.Form2.cmdOk.size(855,375)
+gui.Form2.cmdOk.zorder(0)
+gui.Form2.cmdOk.position(200,1000)
+gui.Form2.cmdOk.enabled(True)
+gui.Form2.cmdOk.fontname("Arial")
+gui.Form2.cmdOk.fontsize(8)
+gui.Form2.cmdOk.event(click,cmdok_click)
+gui.Form2.cmdOk.defaultvalue("")
+gui.Form2.cmdOk.controlgroup(0)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Variable.Global.sDesc.Declare(String)
+Variable.Global.iSeqMult.Declare(Long,0)
+Variable.Global.iNextSeq.Declare(Long,0)
+Variable.Global.sProvider.Declare(String)
+Variable.Global.sServer.Declare(String)
+Variable.Global.sUID.Declare(String)
+Variable.Global.sPWD.Declare(String)
+Variable.Global.sDatabase.Declare(String)
+Variable.Global.sType.Declare(String)
+Variable.Global.sRet.Declare(String)
+Program.External.Include.Library("GCG_3849_RtrUploadUPLRTRHR_V1.lib")
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+
+V.Local.sLogin.Declare(String)
+
+' verify the license
+F.Intrinsic.Control.CallSub(Licenseverification)
+' find the file path
+F.Intrinsic.Control.CallSub(Logincredentials)
+
+' open the DBconnections
+F.Intrinsic.String.Build("Provider={0};Server={1};Database={2};Uid={3};Pwd={4};",V.Global.sProvider,V.Global.sServer,V.Global.sDatabase,V.Global.sUID,V.Global.sPWD,V.Local.sLogin)
+F.ODBC.Connection!ConSN.OpenConnection(V.Local.sLogin)
+F.ODBC.Connection!ConGS.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+Gui.SS_Form1..Show
+
+Program.Sub.Main.End
+
+Program.Sub.loadSNQuotes.Start
+
+V.Local.sRet.Declare(String)
+V.Local.sRetHeader.Declare(String)
+V.Local.sRetLine.Declare(String)
+V.Local.sHold.Declare(String)
+V.Local.iFor.Declare(String)
+V.Local.sSel.Declare(String)
+V.Local.sHeader.Declare(String)
+V.Local.sLines.Declare(String)
+V.Local.sQuoteText.Declare(String)
+V.Local.sParam.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.sLogin.Declare(String)
+'
+'
+'F.Intrinsic.String.Build("Provider={0};Server={1};Database={2};Uid={3};Pwd={4};",V.Global.sProvider,V.Global.sServer,V.Global.sDatabase,V.Global.sUID,V.Global.sPWD,V.Local.sLogin)
+'F.ODBC.Connection!ConSN.OpenConnection(V.Local.sLogin)
+'F.ODBC.Connection!ConGS.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+' show screen  to allow selection of quote range
+' get list of all SN quotes
+'F.ODBC.Connection!ConSN.ExecuteAndReturn("select QuoteNumber,CustomerID, ShipToID, BillToID, QuoteDate, DueDate, CustomerPO, SalesRep, TotalCost, TotalPrice, QuoteValidTo from "Quote" order by QuoteNumber",V.Local.sRet)
+F.Intrinsic.String.Build("select QuoteNumber,CustomerID, ShipToID, BillToID, QuoteDate, DueDate, CustomerPO, SalesRep, TotalCost, TotalPrice, QuoteValidTo from Quote where QuoteNumber between '{0}' and '{1}' order by QuoteNumber",V.Screen.Form2!txt1.Text,V.Screen.Form2!txt2.text,V.Local.sSel)
+F.ODBC.Connection!ConSN.ExecuteAndReturn(V.Local.sSel,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("No Quotes Found")
+	F.Intrinsic.Control.CallSub(Unload)
+F.Intrinsic.Control.endif
+
+F.Intrinsic.String.Split(V.Local.sRet,"#$#",V.Local.sRet)
+V.Local.sLines.Redim(V.Local.sRet.LBound,V.Local.sRet.UBound)
+' for each SN quote
+F.Intrinsic.Control.For(V.Local.iFor,V.Local.sRet.LBound,V.Local.sRet.UBound,1)
+	F.Intrinsic.String.Split(V.Local.sRet(v.Local.iFor),"*!*",V.Local.sRetHeader)
+	' get the SN qute lines
+'	F.Intrinsic.String.Concat("select PartName, Qty, UnitPrice, TotalPrice,QuoteNumber, UnitCost from QuoteItems where QuoteNumber ='",V.Local.sRetHeader(0),"' ",V.Local.sSel)
+	F.Intrinsic.String.Concat("select PartName, Qty, UnitPrice, TotalPrice,QuoteNumber, UnitCost, PartRectWeight, Material, Thickness, PartMinXDim, PartMinYDim from QuoteItems where QuoteNumber ='",V.Local.sRetHeader(0),"' ",V.Local.sSel)
+	F.ODBC.Connection!ConSN.ExecuteAndReturn(V.Local.sSel,V.Local.sRetLine)
+	' call sub to start building text that will load quote
+	F.Intrinsic.Control.CallSub(Loadquote,"HEADER",V.Local.sRet(v.Local.iFor),"LINES",V.Local.sRetLine)
+	' if not blank, concatenate all lines to a single variable, so a single file canbe created to load all quotes
+	F.Intrinsic.Control.If(V.Args.QUOTETEXT,<>,"")
+		F.Intrinsic.String.Concat(V.Local.sQuoteText,V.Args.QUOTETEXT,V.Local.sQuoteText)
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Next(V.Local.iFor)
+
+' if the text was created, load the quotes
+F.Intrinsic.Control.If(V.Local.sQuoteText.Trim,<>,"")
+	F.Intrinsic.String.Concat(V.Caller.FilesDir,"\QUOTE.TXT",V.Local.sParam)
+	F.Intrinsic.File.String2File(V.Local.sParam,V.Local.sQuoteText)
+
+	F.Intrinsic.File.Exists(V.Local.sParam,V.Local.bExists)
+	F.Intrinsic.Control.If(V.Local.bExists,=,True)
+'		F.Global.General.CallWrapperSync(50,"UPLQUOTE/A")
+		f.Global.General.CallWrapperSync(6002,"NS!*!50")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.AddRV("COMPLETE",0)
+'F.ODBC.Connection!ConSN.Close
+'F.ODBC.Connection!ConGS.Close
+
+Program.Sub.loadSNQuotes.End
+
+Program.Sub.loadRouter.Start
+
+V.Local.sRetB.Declare(String)
+V.Local.iFor.Declare(String)
+V.Local.sSel.Declare(String)
+V.Local.sRouter.Declare(String)
+V.Local.sLine.Declare(String)
+V.Local.sHold.Declare(String)
+V.Local.sRtrNo.Declare(String)
+V.Local.sRetCust.Declare(String)
+
+'F.Intrinsic.String.Split(V.Args.ROUTER,V.Ambient.NewLine,V.Local.sRouter)
+F.Intrinsic.String.Split(V.Args.LINES,"#$#",V.Local.sLine)
+'  QuoteItemId, PartName, MachineName, Qty, Material, UnitCost, Markup, UnitPrice, TotalPrice, PartTrueArea, PartQuotedTime, NestedArea, PartData1,QuoteNumber, ProcessCost, MaterialCost, PartData12
+F.Intrinsic.String.Split(V.Args.ROUTER,"*!*",V.Local.sRouter)
+
+'V.Local.sRouter.RedimPreserve(0,7)
+F.Intrinsic.String.Concat("select Router from Router_Header where Router ='",V.Local.sRouter(1),"' ",V.Local.sSel)
+F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSel,V.Local.sRetB)
+F.Intrinsic.Control.If(V.Local.sRetB.Trim,=,"")
+	' create the Header record
+	F.Intrinsic.Control.CallSub(Rtrheader,"ROUTER",V.Args.ROUTER,"CUSTOMER",V.Args.CUSTOMER)
+F.Intrinsic.Control.EndIf
+
+V.Local.sRtrNo.Set(V.Local.sRouter(1))
+F.Intrinsic.String.Join(V.Local.sRouter,"*!*",V.Local.sRouter)
+V.Local.sRouter.RedimPreserve(0,0)
+
+		V.Global.iNextSeq.Set(0)
+		' M Line
+		F.Intrinsic.Control.CallSub(Rtrmline,"ROUTER",V.Local.sRouter,"CUSTOMER",V.Args.CUSTOMER,"LINES",V.Args.LINES)
+		'add to the line
+		F.Intrinsic.Math.Add(V.Global.iLineRTR,1,V.Global.iLineRTR)
+		' L Line
+		F.Intrinsic.Control.CallSub(Rtrlline,"ROUTER",V.Local.sRouter,"CUSTOMER",V.Args.CUSTOMER,"LINES","")
+
+' add the router lines
+F.Intrinsic.Control.If(V.Local.sLine.UBound,>=,0)
+F.Intrinsic.Control.AndIf(V.Local.sLine(0).Trim,<>,"")
+	F.Intrinsic.Control.For(V.Local.iFor,V.Local.sLine.LBound,V.Local.sLine.UBound,1)
+'		F.Intrinsic.String.Split(V.Local.sLine(v.Local.iFor),"*!*",V.Local.sHold)
+'		V.Local.sHold.RedimPreserve(0,4)
+'		F.Intrinsic.String.Concat("select CustomerID from Quote where QuoteNumber = '",V.Local.sHold(12),"' ",V.Local.sSel)
+'		F.ODBC.Connection!ConSN.ExecuteAndReturn(V.Local.sSel,V.Local.sRetCust)
+'		F.Intrinsic.String.Replace(V.Local.sRouter,"**CUST**",V.Local.sRetCust,V.Local.sRouter)
+
+		V.Local.sHold.Set(V.Local.sLine(v.Local.iFor))
+
+		'add to the line
+		F.Intrinsic.Math.Add(V.Global.iLineRTR,1,V.Global.iLineRTR)
+		' L Line
+		F.Intrinsic.Control.CallSub(Rtrllineextra,"ROUTER",V.Local.sRouter,"CUSTOMER",V.Args.CUSTOMER,"LINES",V.Local.sHold)
+
+	F.Intrinsic.Control.Next(V.Local.iFor)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.CallSub(Routerline)
+
+'Attach document
+F.Intrinsic.Control.CallSub(Attach_Image)
+
+F.Intrinsic.Variable.AddRV("RTRNO",V.Local.sRtrNo)
+
+Program.Sub.loadRouter.End
+
+Program.Sub.Unload.Start
+
+F.ODBC.Connection!ConSN.Close
+F.ODBC.Connection!ConGS.Close
+
+
+F.Intrinsic.Control.End
+
+Program.Sub.Unload.End
+
+Program.Sub.loadQuote.Start
+
+V.Local.sFile.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.sRetB.Declare(String)
+V.Local.iFor.Declare(String)
+V.Local.iForLines.Declare(Long)
+V.Local.sSel.Declare(String)
+V.Local.sQteNo.Declare(String)
+V.Local.sQuoteLine.Declare(String)
+V.Local.sParam.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.sHeader.Declare(String)
+V.Local.sLine.Declare(String)
+V.Local.sHold.Declare(String)
+V.Local.sQuoteText.Declare(String)
+V.Local.sLineHold.Declare(String)
+V.Local.sRecA.Declare(String)
+V.Local.iLine.Declare(Long)
+V.Local.bError.Declare(Boolean)
+
+'F.ODBC.Connection!ConGS.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+F.Intrinsic.String.Split(V.Args.HEADER,V.Ambient.NewLine,V.Local.sHeader)
+F.Intrinsic.String.Split(V.Args.LINES,V.Ambient.NewLine,V.Local.sLine)
+
+' this was originally done differently.  left a lot intact to not have to re-code
+' for example, will now be receiving only a single header line, but loop is still here
+F.Intrinsic.Control.For(V.Local.iFor,V.Local.sHeader.LBound,V.Local.sHeader.UBound,1)
+
+	V.Local.sQuoteLine.Set("")
+	' QuoteNumber,CustomerID, ShipToID, BillToID, Quote_Date, DueDate, CustomerPO, SalesRep, TotalCost, TotalPrice, QuoteValidTo from :: PartName, Qty, UnitPrice, TotalPrice from QuotedItems
+	F.Intrinsic.String.Split(V.Local.sHeader(v.Local.iFor),"*!*",V.Local.sHold)
+	' the quote number in GS must be numeric.
+	F.Intrinsic.Control.If(V.Local.sHold(0).IsNumeric,=,True)
+		F.Intrinsic.String.LPad(V.Local.sHold(0),"0",7,V.Local.sHold(0))
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.GoTo("EXIT")
+	F.Intrinsic.Control.EndIf
+
+	' see if quote exists in GSS, if not add the information to a formatted string
+	F.Intrinsic.String.Concat("select Quote_No from Quote_Header where Quote_No ='",V.Local.sHold(0),"' ",V.Local.sSel)
+	F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSel,V.Local.sRetB)
+	F.Intrinsic.Control.If(V.Local.sRetB.Trim,=,"")
+'	F.Intrinsic.Control.AndIf(V.Local.sHold(0).IsNumeric,=,True)
+
+		' A record
+		F.Intrinsic.Control.CallSub(Quotea,"HEAD",V.Local.sHeader(v.Local.iFor),"LINE",V.Local.sLine(v.Local.iFor))
+		F.Intrinsic.String.Split(V.Local.sHeader(v.Local.iFor),"*!*",V.Local.sLineHold)
+		V.Local.sLineHold(1).Set(V.Args.CUST)
+		F.Intrinsic.String.Join(V.Local.sLineHold,"*!*",V.Local.sHeader(v.Local.iFor))
+		V.Local.bError.Set(V.Args.bError)
+		F.Intrinsic.Control.If(V.Args.bError,=,False)
+			F.Intrinsic.Control.If(V.Local.sQteNo,=,"")
+				V.Local.sQteNo.Set(V.Local.sHold(0))
+			F.Intrinsic.Control.EndIf
+			' B Record
+			F.Intrinsic.Control.CallSub(Quoteb,"HEAD",V.Local.sHeader(v.Local.iFor),"LINE",V.Local.sLine(v.Local.iFor),"CUST",V.Args.CUST)
+			' C Record
+			F.Intrinsic.Control.CallSub(Quotec,"HEAD",V.Local.sHeader(v.Local.iFor),"LINE",V.Local.sLine(v.Local.iFor),"CUST",V.Args.CUST)
+			' Lines
+			F.Intrinsic.String.Split(V.Local.sLine(v.Local.iFor),"#$#",V.Local.sLineHold)
+			F.Intrinsic.Control.For(V.Local.iForLines,V.Local.sLineHold.LBound,V.Local.sLineHold.UBound,1)
+				F.Intrinsic.Math.Add(V.Local.iForLines,1,V.Local.iLine)
+				F.Intrinsic.Control.CallSub(Quoteline,"HEAD",V.Local.sHeader(v.Local.iFor),"LINE",V.Local.sLineHold(v.Local.iForLines),"CUST",V.Args.CUST,"LINENO",V.Local.iLine)
+				F.Intrinsic.String.Concat(V.Local.sQuoteLine,V.Args.LINE,V.Ambient.NewLine,V.Local.sQuoteLine)
+			F.Intrinsic.Control.Next(V.Local.iForLines)
+			' build string with all lines
+			F.Intrinsic.String.Concat(V.Local.sQuoteText,V.Args.sQuoteA,V.Ambient.NewLine,V.Args.sQuoteB,V.Ambient.NewLine,V.Args.sQuoteC,V.Ambient.NewLine,V.Local.sQuoteLine,V.Local.sQuoteText)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.UI.Msgbox("Quote already exists.")
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iFor)
+'F.ODBC.Connection!ConGS.Close
+
+F.Intrinsic.Control.Label("EXIT")
+F.Intrinsic.Variable.AddRV("QUOTETEXT",V.Local.sQuoteText)
+F.Intrinsic.Variable.AddRV("QUOTE",V.Local.sQteNo)
+
+Program.Sub.loadQuote.End
+
+Program.Sub.quoteA.Start
+
+V.Local.sTemp.Declare(String)
+V.Local.sHead.Declare(String)
+V.Local.sHeader.Declare(String)
+V.Local.sLine.Declare(String)
+V.Local.sHold.Declare(String)
+V.Local.sText.Declare(String)
+
+
+' QuoteNumber,CustomerID, ShipToID, BillToID, Quote_Date, DueDate, CustomerPO, SalesRep, TotalCost, TotalPrice, QuoteValidTo
+F.Intrinsic.String.Split(V.Args.HEAD,"*!*",V.Local.sHead)
+' PartName, Qty, UnitPrice, TotalPrice
+F.Intrinsic.String.Split(V.Args.LINE,"*!*",V.Local.sLine)
+V.Local.sText.Redim(0,15)
+
+'Quote Number 1-7 7
+F.Intrinsic.Control.If(V.Local.sHead(0).IsNumeric,=,True)
+	F.Intrinsic.String.LPad(V.Local.sHead(0),"0",7,V.Local.sTemp)
+	F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Replace(V.Local.sHead(0),"Q","",V.Local.sHead(0))
+	F.Intrinsic.String.LPad(V.Local.sHead(0),"0",7,V.Local.sTemp)
+	F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+F.Intrinsic.Control.EndIf
+
+'Filler Not In Use 8-10 3
+'Record Type Always A 11-11 1
+F.Intrinsic.String.LPad("A"," ",4,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Customer Number 12-17 6
+'F.Intrinsic.String.RPad(V.Local.sHead(1)," ",6,V.Local.sHead(1))
+F.Intrinsic.Control.CallSub(Checkcust,"CUST",V.Local.sHead(1))
+V.Local.sHead(1).Set(V.Args.CUST)
+'F.Intrinsic.Control.If(V.Args.bError,=,False)
+'	'Customer is not in customer master
+'	F.Intrinsic.Variable.AddRV("bError",True)
+'	F.Intrinsic.Control.ExitSub
+'F.Intrinsic.Control.ElseIf(V.Local.sHead(1).IsNumeric,=,False)
+'	F.Intrinsic.Variable.AddRV("bError",True)
+'	F.Intrinsic.Control.ExitSub
+'F.Intrinsic.Control.Else
+	F.Intrinsic.String.RPad(V.Local.sHead(1)," ",6,V.Local.sTemp)
+	F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+'F.Intrinsic.Control.EndIf
+
+'F.Intrinsic.String.RPad(V.Local.sText(2)," ",6,V.Local.sTemp)
+'F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To ID 18-23 6
+F.Intrinsic.String.RPad(V.Local.sHead(2)," ",6,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Quote Date MMDDYY 24-29 6
+F.Intrinsic.String.Format(V.Local.sHead(4),"MMDDYY",V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Due Date MMDDYY 30-35 6
+F.Intrinsic.String.Format(V.Local.sHead(5),"MMDDYY",V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Purchase Order / Reference 36-50 15
+F.Intrinsic.String.RPad(V.Local.sHead(6)," ",15,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Mark Information 51-80 30
+F.Intrinsic.String.RPad(" "," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'FOB Information 81-94 14
+F.Intrinsic.String.RPad(V.Local.sText(7)," ",14,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Terms 95-104 10
+F.Intrinsic.String.RPad(V.Local.sText(8)," ",10,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Last Item No. (Last Line Number) 105-108 4
+F.Intrinsic.String.LPad(V.Local.sText(9),"0",4,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Sort Code 1 109-128 20
+F.Intrinsic.String.RPad(V.Local.sText(10)," ",20,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Who Got It 129-148 20
+F.Intrinsic.String.RPad(" "," ",20,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'User Field 1 149-178 30
+F.Intrinsic.String.RPad(V.Local.sText(11)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'User Field 2 179-208 30
+'User Field 3 209-238 30
+'User Field 4 239-268 30
+'User Field 5 269-298 30
+F.Intrinsic.String.RPad(" "," ",120,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Sales Representative Code 299-301 3
+F.Intrinsic.String.RPad(V.Local.sHead(7)," ",3,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Branch 302-303 2
+'Area 304-305 2
+'Freight Zone 306-315 10
+F.Intrinsic.String.RPad(" "," ",14,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship Via 316-335 20
+F.Intrinsic.String.RPad(V.Local.sText(12)," ",20,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+
+'Quote Discount Percentage 1.4 336-351 16
+'Price Class Discount Code 352-352 1
+'Price Class Discount Percentage 1.4 353-368 16
+'Commission Rate Type 369-373 5
+'GL Account 374-388 15
+F.Intrinsic.String.RPad(" "," ",53,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Tax State 389-390 2
+F.Intrinsic.String.RPad(V.Local.sText(13)," ",2,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Tax Authority 1 391-393 3
+'Tax Authority 2 394-396 3
+'Tax Authority 3 397-399 3
+'Tax Authority 4 400-402 3
+'Tax Authority 5 403-405 3
+'Tax Authority 6 406-408 3
+'Tax Authority 7 409-411 3
+'Tax Authority 8 412-414 3
+'Tax Authority 9 415-417 3
+'Tax Authority 10 418-420 3
+'Tax Apply Flag 1 421-421 1
+'Tax Apply Flag 2 422-422 1
+'Tax Apply Flag 3 423-423 1
+'Tax Apply Flag 4 424-424 1
+'Tax Apply Flag 5 425-425 1
+'Tax Apply Flag 6 426-426 1
+'Tax Apply Flag 7 427-427 1
+'Tax Apply Flag 8 428-428 1
+'Tax Apply Flag 9 429-429 1
+'Tax Apply Flag 10 430-430 1
+'Sort Code 2  431-460 30
+'Time & Material Flag Y/N 461-461 1
+F.Intrinsic.String.RPad(" "," ",71,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Company Currency Code 462-464 3
+'F.Intrinsic.String.RPad(V.Args.CUR," ",3,V.Local.sTemp)
+F.Intrinsic.String.RPad("USD"," ",3,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Catalog Currency Code 465-467 3
+F.Intrinsic.String.RPad("USD"," ",3,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Quote Currency Code 468-470 3
+'F.Intrinsic.String.RPad(V.Local.sText(15)," ",3,V.Local.sTemp)
+F.Intrinsic.String.RPad("USD"," ",3,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+
+'Exchange Date 1 CCYYMMDD 471-478 8
+'Exchange Rate 1 5.5 479-494 16
+'Exchange Date 2 CCYYMMDD 495-502 8
+'ExchangeRate25.5503-51816
+'Exchange Date 3 CCYYMMDD 519-526 8
+'Exchange Rate 3 5.5527-542 16
+'Exchange Date 4 543-550 8
+'Exchange Rate 4 5.5 551-566 16
+'Carrier Code 567-572 6
+'3rd Party Freight Customer 573-579 7
+'F.Intrinsic.String.RPad(" "," ",109,V.Local.sTemp)
+'F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+F.Intrinsic.String.RPad(V.Local.sHeader," ",857,V.Local.sHeader)
+
+F.Intrinsic.Variable.AddRV("sQuoteA",V.Local.sHeader)
+F.Intrinsic.Variable.AddRV("bError",False)
+'F.Intrinsic.Variable.AddRV("CUR",V.Args.CUR)
+F.Intrinsic.Variable.AddRV("CUST",V.Args.CUST)
+
+
+Program.Sub.quoteA.End
+
+Program.Sub.quoteB.Start
+
+V.Local.sTemp.Declare(String)
+V.Local.sHeader.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.sHead.Declare(String)
+V.Local.sLine.Declare(String)
+
+' QuoteNumber,CustomerID, ShipToID, BillToID, Quote_Date, DueDate, CustomerPO, SalesRep, TotalCost, TotalPrice, QuoteValidTo
+F.Intrinsic.String.Split(V.Args.HEAD,"*!*",V.Local.sHead)
+' PartName, Qty, UnitPrice, TotalPrice
+F.Intrinsic.String.Split(V.Args.LINE,"*!*",V.Local.sLine)
+V.Local.sText.Redim(0,16)
+
+'Quote Number 1-7 7
+F.Intrinsic.String.Replace(V.Local.sHead(0),"Q","",V.Local.sHead(0))
+F.Intrinsic.String.LPad(V.Local.sHead(0),"0",7,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Filler Not In Use 8-10 3
+'Record Type If the next two fields are blank, the system will populate them with the data from Record 'A'. Always B 11-11 1
+F.Intrinsic.String.Concat(V.Local.sHeader,"   B",V.Local.sHeader)
+
+'Customer Number 12-17 6
+'Customer Number 12-17 6
+'F.Intrinsic.String.LPad(V.Local.sHead(1),"0",6,V.Local.sTemp)
+F.Intrinsic.String.LPad(V.Args.CUST,"0",6,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To ID Leave blank if using the default ship-to address.  18-23 6
+F.Intrinsic.String.RPad(" "," ",6,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Bill-To Name 24-53 30
+F.Intrinsic.String.RPad(V.Local.sText(4)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Bill-To Address 1 54-83 30
+F.Intrinsic.String.RPad(V.Local.sText(5)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Bill-To Address 2 84-113 30
+'Bill-To Address 3 114-143 30
+'Bill-To Address 4 144-173 30
+'Bill-To Address 5 174-203 30
+F.Intrinsic.String.RPad(" "," ",120,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Bill-To City 204-218 15
+F.Intrinsic.String.RPad(V.Local.sText(10)," ",15,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Bill-To State 219-220 2
+F.Intrinsic.String.RPad(V.Local.sText(11)," ",2,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Bill-To Zip 221-233 13
+F.Intrinsic.String.RPad(V.Local.sText(12)," ",13,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Bill-To Country 234-245 12
+F.Intrinsic.String.RPad(V.Local.sText(13)," ",12,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Bill-To Attention 246-275 30
+F.Intrinsic.String.RPad(V.Local.sText(14)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Contact Name 276-305 30
+F.Intrinsic.String.RPad(V.Local.sText(14)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Contact Phone No Dashes 306-325 30
+'Contact Email 326-425 100
+F.Intrinsic.String.RPad(" "," ",130,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'International Address Flag Y/N  426-426 1
+F.Intrinsic.String.RPad(V.Local.sText(16)," ",1,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+F.Intrinsic.String.RPad(V.Local.sHeader," ",857,V.Local.sHeader)
+
+F.Intrinsic.Variable.AddRV("sQuoteB",V.Local.sHeader)
+
+
+Program.Sub.quoteB.End
+
+Program.Sub.quoteC.Start
+V.Local.sTemp.Declare(String)
+V.Local.sHeader.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.sHead.Declare(String)
+V.Local.sLine.Declare(String)
+
+' QuoteNumber,CustomerID, ShipToID, BillToID, Quote_Date, DueDate, CustomerPO, SalesRep, TotalCost, TotalPrice, QuoteValidTo
+F.Intrinsic.String.Split(V.Args.HEAD,"*!*",V.Local.sHead)
+' PartName, Qty, UnitPrice, TotalPrice
+F.Intrinsic.String.Split(V.Args.LINE,"*!*",V.Local.sLine)
+V.Local.sText.Redim(0,17)
+
+
+'Quote Number 1-7 7
+F.Intrinsic.String.Replace(V.Local.sHead(0),"Q","",V.Local.sHead(0))
+F.Intrinsic.String.LPad(V.Local.sHead(0),"0",7,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Filler Not In Use 8-10 3
+'Record Type If the next two fields are blank, the system will populate them with the data from Record 'A'. Always C 11-11 1
+F.Intrinsic.String.Concat(V.Local.sHeader,"   C",V.Local.sHeader)
+
+'Customer Number 12-17 6
+'F.Intrinsic.String.LPad(V.Local.sHead(1),"0",6,V.Local.sTemp)
+F.Intrinsic.String.LPad(V.Args.CUST,"0",6,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To ID Leave blank if using the default ship-to address.  18-23 6
+F.Intrinsic.String.RPad(" "," ",6,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To Name 24-53 30
+F.Intrinsic.String.RPad(V.Local.sText(4)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To Address 1 54-83 30
+F.Intrinsic.String.RPad(V.Local.sText(5)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To Address 2 84-113 30
+'Ship-To Address 3 114-143 30
+'Ship-To Address 4 144-173 30
+'Ship-To Address 5 174-203 30
+F.Intrinsic.String.RPad(" "," ",120,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To City 204-218 15
+F.Intrinsic.String.RPad(V.Local.sText(10)," ",15,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To State 219-220 2
+F.Intrinsic.String.RPad(V.Local.sText(11)," ",2,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To Zip 221-233 13
+F.Intrinsic.String.RPad(V.Local.sText(12)," ",13,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To Country 234-245 12
+F.Intrinsic.String.RPad(V.Local.sText(13)," ",12,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Ship-To Attention 246-275 30
+F.Intrinsic.String.RPad(V.Local.sText(14)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Sales Representative Code 276-278 3
+'Branch 279-280 2
+'Area 281-282 2
+'Freight Zone 283-292 10
+'Ship Via 293-312 20
+'Quote Discount Percentage 1.4 313-328 16
+'Price Class Code 329-329 1
+'Price Class Discount Percentage 1.4 330-345 16
+'Commission Rate Type 346-350 5
+'GL Account Only 10-characters can be used at this time. 351-365 15
+'Tax State 366-367 2
+'Tax Authority 1 368-370 3
+'Tax Authority 2 371-373 3
+'Tax Authority 3 374-376 3
+'Tax Authority 4 377-379 3
+'Tax Authority 5 380-382 3
+'Tax Authority 6 383-385 3
+'Tax Authority 7 386-388 3
+'Tax Authority 8 389-391 3
+'Tax Authority 9 392-394 3
+'Tax Authority 10  395-397 3
+'Tax Apply Flag 1 398-398 1
+'Tax Apply Flag 2 399-399 1
+'Tax Apply Flag 3 400-400 1
+'Tax Apply Flag 4 401-401 1
+'Tax Apply Flag 5 402-402 1
+'Tax Apply Flag 6 403-403 1
+'Tax Apply Flag 7 404-404 1
+'Tax Apply Flag 8 405-405 1
+'Tax Apply Flag 9 406-406 1
+'Tax Apply Flag 10 407-407 1
+F.Intrinsic.String.RPad(" "," ",132,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sText,V.local.sTemp,V.Local.sText)
+
+'International Address Flag Enter 'Y' if Ship To Address is International. Y/N 408-408 1
+F.Intrinsic.String.RPad(V.Local.sText(17)," ",1,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sHeader,V.Local.sTemp,V.Local.sHeader)
+
+'Carrier Code Validated against Carrier Code Table Must match 'A' record unless 'C' record is not the default Ship-To code. 409-414 6
+'3rd Party Freight Customer 415-421 7
+'Filler Not In Use 422-857 436
+'F.Intrinsic.String.RPad(" "," ",449,V.Local.sTemp)
+'F.Intrinsic.String.Concat(V.Local.sText,V.local.sTemp,V.Local.sText)
+F.Intrinsic.String.RPad(V.Local.sHeader," ",857,V.Local.sHeader)
+F.Intrinsic.Variable.AddRV("sQuoteC",V.Local.sHeader)
+
+
+Program.Sub.quoteC.End
+
+Program.Sub.quoteLine.Start
+V.Local.sLine.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.sHead.Declare(String)
+V.Local.sLineData.Declare(String)
+V.Local.fWeight.Declare(Float)
+
+' QuoteNumber,CustomerID, ShipToID, BillToID, Quote_Date, DueDate, CustomerPO, SalesRep, TotalCost, TotalPrice, QuoteValidTo
+F.Intrinsic.String.Split(V.Args.HEAD,"*!*",V.Local.sHead)
+' PartName, Qty, UnitPrice, TotalPrice, PartRectWeight, Material, Thickness, PartXDim, PartYDim
+'PartName, Qty, UnitPrice, TotalPrice,QuoteNumber, UnitCost, PartRectWeight, Material, Thickness, PartXDim, PartYDim
+F.Intrinsic.String.Split(V.Args.LINE,"*!*",V.Local.sLineData)
+V.Local.sLineData.RedimPreserve(0,10)
+V.Local.sText.Redim(0,15)
+
+'Quote Number 1-7 7
+F.Intrinsic.String.Replace(V.Local.sHead(0),"Q","",V.Local.sHead(0))
+F.Intrinsic.String.LPad(V.Local.sHead(0),"0",7,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Line number 001-999 8-10 3
+F.Intrinsic.String.LPad(V.Args.LINENO,"0",3,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Record Type Always L 11-11 1
+F.Intrinsic.String.Concat(V.Local.sLine,"L",V.Local.sLine)
+
+'Customer Number 12-17 6
+'F.Intrinsic.String.LPad(V.Local.sHead(1),"0",6,V.Local.sTemp)
+F.Intrinsic.String.LPad(V.Args.CUST," ",6,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Customer Ship-To ID 18-23 6
+F.Intrinsic.String.RPad(" "," ",6,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Type S - Standard Line record F - Freight Line record S/F 24-24 1
+F.Intrinsic.String.Concat(V.Local.sLine,"S",V.Local.sLine)
+
+'Quantity Ordered 9.4 25-43 19
+F.Intrinsic.String.Format(V.Local.sLineData(1),"0.0000",V.Local.sTemp)
+F.Intrinsic.String.LPad(V.Local.sTemp,"0",19,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Quantity Fraction (Weight) 7.3 44-59 16
+F.Intrinsic.Math.Mult(V.Local.sLineData(1).Long,V.Local.sLineData(6).Float,V.Local.fWeight)
+'F.Intrinsic.String.RPad(V.Local.sLineData(6)," ",16,V.Local.sTemp)
+F.Intrinsic.String.RPad(V.Local.fWeight.String," ",16,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Unit of Measure 60-61 2
+F.Intrinsic.String.Concat(V.local.sLine,"EA",V.Local.sLine)
+
+'Part Number 62-81 20
+F.Intrinsic.String.RPad(V.Local.sLineData(0)," ",20,V.Local.stemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Quote Won or Loss W/L 82-82 1
+F.Intrinsic.String.LPad(V.Local.sText(8)," ",1,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Price 10.6 83-101 19
+F.Intrinsic.String.Format(V.Local.sLineData(2),"0.000000",V.Local.sTemp)
+'F.Intrinsic.String.Format(V.Local.sLineData(3),"0.000000",V.Local.sTemp)
+'F.Intrinsic.String.Format(V.Local.sHead(9),"0.000000",V.Local.sTemp)
+F.Intrinsic.String.LPad(V.Local.sTemp,"0",19,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Cost 10.6 102-120 19
+'F.Intrinsic.String.Format(V.Local.sHead(10),"0.000000",V.Local.sTemp)
+F.Intrinsic.String.Format(V.Local.sLineData(5),"0.000000",V.Local.sTemp)
+F.Intrinsic.String.LPad(V.Local.sTemp,"0",19,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Sort Code 121-132 12
+F.Intrinsic.String.LPad(""," ",12,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Part Description 133-162 30
+'formating PartMinXDim and PartMinYDim 
+F.Intrinsic.String.Split(V.Local.sLineData(9),".",V.Local.sTemp)
+F.Intrinsic.Control.If(V.Local.sTemp.UBound,=,0)
+	V.Local.sLineData(9).Set(V.Local.sTemp)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.If(V.Local.sLineData(9).Format*0.##,>,V.Local.sTemp(0))
+		F.Intrinsic.String.Format(V.Local.sLineData(9),0.00,V.Local.sLineData(9))
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Split(V.Local.sLineData(10),".",V.Local.sTemp)
+F.Intrinsic.Control.If(V.Local.sTemp.UBound,=,0)
+	V.Local.sLineData(10).Set(V.Local.sTemp)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.If(V.Local.sLineData(10).Format*0.##,>,V.Local.sTemp(0))
+		F.Intrinsic.String.Format(V.Local.sLineData(10),0.00,V.Local.sLineData(10))
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Build("{0}_{1}_{2}_{3}",V.Local.sLineData(7),V.Local.sLineData(8),V.Local.sLineData(9),V.Local.sLineData(10),V.Local.sText(10))
+F.Intrinsic.String.RPad(V.Local.sText(10)," ",30,V.Local.stemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'putting unit weight to the user 1 field so it can be map when customer creates inventory part.
+'User Field 1 163-192 30
+F.Intrinsic.String.RPad(V.Local.sLineData(6)," ",30,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+'User Field 2 193-222 30
+'User Field 3 223-252 30
+'User Field 4 253-282 30
+'User Field 5 283-312 30
+'Part Location 313-314 2
+'Got It Price 10.6 315-333 19
+'F.Intrinsic.String.RPad(" "," ",171,V.Local.sTemp)
+F.Intrinsic.String.RPad(" "," ",141,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Quote (Order) Discount Percentage 1.4 334-349 16
+F.Intrinsic.String.Format(V.Local.sText(11),"0.0000",V.Local.sTemp)
+F.Intrinsic.String.RPad(V.Local.sTemp," ",16,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Uses Ship Code Y/N 350-350 1
+'Price Class Discount Percentage 1.4 351-366 16
+'Commission Rate Type 367-371 5
+F.Intrinsic.String.RPad(" "," ",22,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Normal GL Account 372-386 15
+v.Local.sTemp.Set("6001")
+F.Intrinsic.String.RPad(V.Local.sTemp," ",15,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Tax State 387-388 20
+'Tax Authority 1 389-391 3
+'Tax Authority 2 392-394 3
+'Tax Authority 3 395-397 3
+'Tax Authority 4 398-400 3
+'Tax Authority 5 401-403 3
+'Tax Authority 6 404-406 3
+'Tax Authority 7 407-409 3
+'Tax Authority 8 410-412 3
+'Tax Authority 9 413-415 3
+'Tax Authority 10 416-418 3
+'Tax Apply Flag 1 419-419 1
+'Tax Apply Flag 2 420-420 1
+'Tax Apply Flag 3 421-421 1
+'Tax Apply Flag 4 422-422 1
+'Tax Apply Flag 5 423-423 1
+'Tax Apply Flag 6 424-424 1
+'Tax Apply Flag 7 425-425 1
+'Tax Apply Flag 8 426-426 1
+'Tax Apply Flag 9 427-427 1
+'Tax Apply Flag 10 428-428 1
+'Original Quantity 9.4 429-447 19
+'Inventory Bin 448-451 4
+'Group 452-461 10
+'Order Date CCYYMMDD 462-469 8
+'Item Promise Date MMDDYY 470-475 6
+'Tax Status Flag E - Exempt T - Taxable E/T 476-476 1
+'Customer Part Number 477-508 32
+'Info Field 1 509-528 32
+'Info Field 2 529-548 20
+F.Intrinsic.String.RPad(" "," ",162,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Order Currency Code 549-551 3
+F.Intrinsic.String.RPad("USD"," ",3,V.Local.stemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Extended Price (Extension) Note: Not shown as required in Data Conversion Mapper. 14.2 552-570 19
+'F.Intrinsic.String.Format(V.Local.sHead(9),"0.00",V.Local.sTemp)
+F.Intrinsic.String.Format(V.Local.sLineData(3),"0.00",V.Local.sTemp)
+F.Intrinsic.String.LPad(V.Local.sTemp,"0",19,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+
+'BOM Switch C - Component N - Non-BOM item Y - BOM parent 571-571 1
+'BOM Parent 572-575 4
+F.Intrinsic.String.RPad(" "," ",5,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Product Line 576-577 2
+F.Intrinsic.String.Concat(V.local.sLine,"VP",V.Local.sLine)
+
+'Filler Not In Use 578-578 1
+'Product Line Discount Percentage 1.4 579-594 16
+F.Intrinsic.String.RPad(" "," ",17,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Discount Amount This is the total discount amount for this quote (i.e. the sum of Order, Price Class, and Product Line Discount Amounts). 10.2 595-613 19
+F.Intrinsic.String.Format(V.Local.sText(13),"0000000000.00",V.Local.sTemp)
+F.Intrinsic.String.RPad(V.Local.sTemp," ",19,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Discount Price *This field is required if you use any discounts. This is the actual price the part is sold for after all discounts have been applied. 10.6 614-632 19
+F.Intrinsic.String.Format(V.Local.sText(14),"0000000000.000000",V.Local.sTemp)
+F.Intrinsic.String.RPad(V.Local.sTemp," ",19,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Quote (Order) Discount Amount *If a quote Discount rate is entered above, this field is required. 10.2 633-651 19
+F.Intrinsic.String.Format(V.Local.sText(15),"0000000000.00",V.Local.sTemp)
+F.Intrinsic.String.RPad(V.Local.sTemp," ",19,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sLine,V.Local.sTemp,V.Local.sLine)
+
+'Price Class Discount Amount *If a Price Class Discount rate is entered above, this field is required. 10.2 652-670 19
+'Product Line Discount Amount *If a Product Line Discount rate is entered above, this field is required. 10.2 671-689 19
+'Cur Freight per Piece 5.6 690-705 16
+'Cur Price 1.6 706-724 19
+'Cur Discount price 10.6 725-743 19
+'Cur Price per Pound 10.6 744-762 19
+'Cur Extension 14.2 763-781 19
+'Cur Discount Amount 10.2 782-800 19
+'Cur Order Discount Amount 10.2 801-819 19
+'Cur Price Class Discount Amount 10.2 820-838 19
+'Cur Product Line Discount Amount 10.2 839-857 19
+'F.Intrinsic.String.RPad(" "," ",206,V.Local.sTemp)
+'F.Intrinsic.String.Concat(V.local.sLine,V.Local.sTemp,V.Local.sLine)
+
+F.Intrinsic.String.RPad(V.Local.sLine," ",857,V.Local.sLine)
+F.Intrinsic.Variable.AddRV("LINE",V.Local.sLine)
+
+
+Program.Sub.quoteLine.End
+
+Program.Sub.checkCust.Start
+
+V.Local.sSel.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sRetCust.Declare(String)
+
+F.Intrinsic.String.Concat("select Customer from V_Customer_Master where Customer = '",V.Args.CUST,"' ",V.Local.sSel)
+F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSel,V.Local.sRetCust)
+F.Intrinsic.Control.If(V.Local.sRetCust.Trim,=,"")
+'	F.Intrinsic.Variable.AddRV("bError",False)
+	'We don't have a customer so ask them to select a real one
+	F.Intrinsic.UI.Browser(225,"",V.Local.sRetCust)
+	F.Intrinsic.Control.If(V.Local.sRetCust,=,"***CANCEL***")
+		F.Intrinsic.UI.Msgbox("A Customer or Prospect must be selected.")
+		F.Intrinsic.Control.CallSub(Unload)
+	F.Intrinsic.Control.EndIf
+'F.Intrinsic.Control.Else
+'	F.Intrinsic.Variable.AddRV("bError",True)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.String.Split(V.Local.sRetCust,"*!*",V.Local.sRetCust)
+V.Local.sRetCust.RedimPreserve(0,0)
+
+F.Intrinsic.String.Concat("select Order_Curr from v_Customer_Intl where Customer = '",V.Local.sRetCust,"' ",V.Local.sSel)
+F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSel,V.Local.sRet)
+F.Intrinsic.Variable.AddRV("CUR",V.Local.sRet)
+'We have a Customer so return it.
+F.Intrinsic.Variable.AddRV("CUST",V.Local.sRetCust)
+
+
+Program.Sub.checkCust.End
+
+program.sub.cmdqte_click.start
+
+V.Local.sRet.Declare(String)
+V.Local.iFor.Declare(Long)
+
+Gui.SS_Form1..Visible(false)
+
+V.Global.sType.Set("Q")
+Gui.Form2.lblBEG.Caption("Beginning Quote")
+Gui.Form2.lblEND.Caption("Ending Quote")
+Gui.Form2..Show
+
+'F.Intrinsic.Control.CallSub(Loadsnquotes)
+
+'F.Intrinsic.Control.CallSub(Loadquote,"HEADER",V.Args.HEADER,"LINES",V.Args.LINES)
+
+'F.Intrinsic.Control.If(V.Args.QUOTE,<>,"")
+'	F.Intrinsic.UI.Msgbox("Maintain Quote Now?","SN Quote Import",4,V.Local.sRet)
+'	F.Intrinsic.Control.If(V.Local.sRet.Long,=,6)
+'		F.Intrinsic.Control.CallSub(Maintainquote,"QUOTE",V.Args.QUOTE)
+'		F.Intrinsic.Control.CallSub(Unload)
+'	F.Intrinsic.Control.EndIf
+'F.Intrinsic.Control.Else
+'	F.Intrinsic.UI.Msgbox("No new quotes found.")
+'F.Intrinsic.Control.EndIf
+
+
+
+'Gui.SS_Form1..Visible(True)
+
+program.sub.cmdqte_click.End
+
+program.sub.cmdrtr_click.start
+
+Gui.SS_Form1..Visible(false)
+V.Global.sType.Set("R")
+Gui.Form2.lblBEG.Caption("Beginning Router")
+Gui.Form2.lblEND.Caption("Ending Router")
+
+Gui.Form2..Show
+
+'V.Local.sRet.Declare(String)
+
+'F.Intrinsic.Control.CallSub(Routerclear)
+'F.Intrinsic.Control.CallSub(Loadsnrouter)
+'Gui.SS_Form1..Visible(True)
+
+program.sub.cmdrtr_click.End
+
+Program.Sub.maintainQuote.Start
+
+V.Local.sParams.Declare(String)
+F.Intrinsic.String.Concat(V.Args.QUOTE,"!*!O",V.Local.sParams)
+F.Global.General.CallWrapperAsync(251000,V.Local.sParams)
+
+Program.Sub.maintainQuote.End
+
+Program.Sub.loadSNRouter.Start
+
+
+V.Local.sRet.Declare(String)
+V.Local.sRetRouter.Declare(String)
+V.Local.sRetLine.Declare(String)
+V.Local.sRetCust.Declare(String)
+V.Local.sHold.Declare(String)
+V.Local.iFor.Declare(String)
+V.Local.sSel.Declare(String)
+V.Local.sLines.Declare(String)
+V.Local.sRouters.Declare(String)
+V.Local.sLogin.Declare(String)
+V.Local.iRet.Declare(Long)
+V.Local.sMsg.Declare(String)
+
+' get the router seq multiplier
+F.Intrinsic.Control.CallSub(Getrtrseq)
+
+F.Intrinsic.String.Build("select distinct QuoteItemId, PartName, MachineName, Qty, Material, UnitCost, Markup, UnitPrice, TotalPrice, PartTrueArea, PartQuotedTime, NestedArea, PartData1,QuoteNumber, ProcessCost, MaterialCost, PartData12, NestedWeight, Note, Thickness, PartMinXDim, PartMinYDim from QuoteItems where QuoteNumber between '{0}' and '{1}' order by QuoteItemID",V.Screen.Form2!txt1.Text,V.Screen.Form2!txt2.Text,V.Local.sSel)
+'F.Intrinsic.String.Build("select distinct QuoteItemId, PartName, MachineName, Qty, Material, UnitCost, Markup, UnitPrice, TotalPrice, PartTrueArea, NestedCuttingTime, NestedArea, PartData1,QuoteNumber from QuoteItems where QUOTENUMBER = '8' AND PartName between '{0}' and '{1}' order by QuoteItemID",V.Screen.Form2!txt1.Text,V.Screen.Form2!txt2.Text,V.Local.sSel)
+
+F.ODBC.Connection!ConSN.ExecuteAndReturn(V.Local.sSel,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet.Trim,<>,"")
+	F.Intrinsic.String.Split(V.Local.sRet,"#$#",V.Local.sRet)
+	' for each router
+	F.Intrinsic.Control.For(V.Local.iFor,V.Local.sRet.LBound,V.Local.sRet.UBound,1)
+		F.Intrinsic.Control.CallSub(Routerclear)
+		F.Intrinsic.String.Split(V.Local.sRet(v.Local.iFor),"*!*",V.Local.sRetRouter)
+		V.Local.sRetRouter.RedimPreserve(0,21)
+		' customer from "Quote" match on quoteitemid and quotenumber
+		F.Intrinsic.String.Build("select CompanyName from "Quote" where QuoteNumber = '{0}' ",V.Local.sRetRouter(13).Trim,V.Local.sSel)
+		F.ODBC.Connection!ConSN.ExecuteAndReturn(V.Local.sSel,V.Local.sRetCust)
+
+		' get all lines
+'		F.Intrinsic.String.Concat(" select QuoteItemRoutingID,RoutingName, RunTime, SetupTime, UnitCost from QuoteItemRoutings where QuoteItemId='",V.Local.sRetRouter(0),"' ",V.Local.sSel)
+		F.Intrinsic.String.Build("SELECT QUOTEITEMROUTINGID, ROUTINGNAME, RUNTIME, SETUPTIME, UNITCOST FROM QUOTEITEMROUTINGS WHERE QUOTEITEMID = '{0}' AND RUNTIME > 0 ",V.Local.sRetRouter(0),V.Local.sSel)
+		F.ODBC.Connection!ConSN.ExecuteAndReturn(V.Local.sSel,V.Local.sRetLine)
+		F.Intrinsic.Control.If(V.Local.sRetLine.Trim,=,"")
+'			F.Intrinsic.String.Build("Router {0} has no lines.  Import Header only?",V.Local.sRetRouter(1),V.Local.smsg)
+'			F.Intrinsic.UI.Msgbox(V.Local.smsg,"",4,V.Local.iRet)
+			F.Intrinsic.Control.SelectCase(V.Local.iRet)
+'			' if NO, then let them select another
+			F.Intrinsic.Control.Case(7)
+				F.Intrinsic.Control.GoTo("NEXT")
+			F.Intrinsic.Control.EndSelect
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.CallSub(Loadrouter,"ROUTER",V.Local.sRet(v.Local.iFor),"CUSTOMER",V.Local.sRetCust,"LINES",V.Local.sRetLine)
+
+		F.Intrinsic.Control.Label("NEXT")
+	F.Intrinsic.Control.Next(V.Local.iFor)
+F.Intrinsic.Control.EndIf
+
+
+
+F.Intrinsic.Variable.AddRV("COMPLETE",0)
+
+Program.Sub.loadSNRouter.End
+
+Program.Sub.maintainRouter.Start
+
+
+
+V.Local.sParams.Declare(String)
+F.Intrinsic.String.Concat("!*!O",V.Args.RTRNO,V.Local.sParams)
+F.Global.General.CallWrapperAsync(400000,V.Local.sParams)
+
+Program.Sub.maintainRouter.End
+
+Program.Sub.rtrHeader.Start	
+
+V.Local.sSel.Declare(String)
+V.Local.sRouter.Declare(String)
+
+F.Intrinsic.String.Split(V.Args.ROUTER,"*!*",V.Local.sRouter)
+'F.Intrinsic.String.Split(V.Args.LINES,V.Ambient.NewLine,V.Local.sLine)
+
+
+' add values to header udt
+F.Intrinsic.Control.CallSub(Addhdrrec,"ROUTER",V.Args.ROUTER,"CUSTOMER",V.Args.CUSTOMER)
+' call sub to format fields for file
+F.Intrinsic.Control.CallSub(Routeraddrecord)
+' create the router header
+F.Intrinsic.Control.CallSub(Routerheader)
+'F.Intrinsic.Math.Add(V.Global.iLineRTR,1,V.Global.iLineRTR)
+' clear, again if header was created
+F.Intrinsic.Control.CallSub(Routerclear)
+' there could be a line with no seq, delete it
+F.Intrinsic.String.Concat("delete from Router_Line where Router = '",V.Local.sRouter(1),"' and Line_Router = '000000' ",V.Local.sSel)
+'F.Intrinsic.String.Build("DELETE FROM ROUTER_LINE WHERE ROUTER = '{0}' AND LINE_ROUTER = '000000' ",V.Local.sRouter(1),V.Local.sSel)
+F.ODBC.Connection!ConGS.Execute(V.Local.sSel)
+
+Program.Sub.rtrHeader.End
+
+Program.Sub.rtrMLine.Start
+
+V.Local.sLine.Declare(String)
+V.Local.sRouter.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.sSel.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sNextSeq.Declare(String)
+V.Local.fRunTime.Declare(Float)
+V.Local.fPartArea.Declare(Float)
+V.Local.fNestedArea.Declare(Float)
+V.Local.fRate.Declare(Float)
+V.Local.sSql.Declare(String)
+
+' '  QuoteItemId, PartName, MachineName, Qty, Material, UnitCost, Markup, UnitPrice, TotalPrice, PartTrueArea, PartQuotedTime, NestedArea, PartData1,QuoteNumber, ProcessCost, MaterialCost, PartData12,NestedWeight
+F.Intrinsic.String.Split(V.Args.ROUTER,"*!*",V.Local.sRouter)
+V.Local.sRouter.RedimPreserve(0,18)
+
+' QuoteItemRoutingID,RoutingName, RunTime, SetupTime, UnitCost
+F.Intrinsic.String.Split(V.Args.LINES,"*!*",V.Local.sLine)
+V.Local.sLine.RedimPreserve(0,4)
+
+' be sure the part on the row is a valid Inventory Part
+' replace '  in part fields
+F.Intrinsic.String.Replace(V.Local.sRouter(16),"'","''",V.Local.sPart)
+F.Intrinsic.String.Concat("select Part, UM_Inventory, Description, Amt_Cost, Time_Material_Lead from V_Inventory_Mstr where Part = '",V.Local.sPart.Trim,"' ",V.Local.sSel)
+F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSel,V.Local.sRet)
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	V.Local.sRet.RedimPreserve(0,4)
+
+' part not found in inventory, skip?  create part?
+'F.Intrinsic.Control.If(V.Local.sRet(0),=,"")
+''	F.Intrinsic.Control.ExitSub
+'	F.Global.Inventory.CreatePart(V.Local.sPart.Trim,V.Local.sRet(1),V.Local.sRet(2),"","RM","","","",0,"NOMAINT")
+'F.Intrinsic.Control.EndIf
+' part found, create line for upload
+'F.Intrinsic.Control.Else
+	' add line increment to getnext seq for line
+	F.Intrinsic.Math.Add(V.Global.iNextSeq,V.Global.iSeqMult,V.Global.iNextSeq)
+	F.Intrinsic.String.LPad(V.Global.iNextSeq,"0",6,V.Local.sNextSeq)
+
+	'RUNTIME FOR MATERIAL = QUANTITY
+'	F.Intrinsic.Math.Mult(V.Local.sRouter(3).Float,V.Local.sRouter(11).Float,V.Local.fRunTime)
+	'NESTED AREA / TRUE AREA
+	'AREA X QTY = RUNTIME
+'	F.Intrinsic.Math.Round(V.Local.sRouter(11),4,V.Local.fNestedArea)
+'	F.Intrinsic.Math.Round(V.Local.sRouter(9),4,V.Local.fPartArea)
+'	F.Intrinsic.Math.Div(V.Local.fNestedArea,V.Local.fPartArea,V.Local.fRunTime)
+'	F.Intrinsic.Math.Mult(V.Local.fRunTime,V.Local.sRouter(3).Float,V.Local.fRunTime)
+'	F.Intrinsic.Math.Round(V.Local.fRunTime,4,V.Local.fRunTime)
+	'ONLY USE NESTED AREA FOR RUNTIME
+'	F.Intrinsic.Math.Round(V.Local.sRouter(11),4,V.Local.fRunTime)
+'	F.Intrinsic.Math.Round(V.Local.sRouter(9),4,V.Local.fRunTime)
+	'our runtime will be nested weight / qty to get our pounds per piece.
+'	F.Intrinsic.Math.Div(V.Local.sRouter(17).Float,V.Local.sRouter(3).Float,V.Local.fRunTime)
+	V.Local.fRunTime.Set(V.Local.sRouter(17).Float)
+	'getting conversion factor and converting from LB to EA
+	F.Intrinsic.String.Build("Select Distinct Consump_Conv From V_Inventory_Mst3 Where Part = '{0}' and Consump_Conv > 0",V.Local.sPart.Trim,V.Local.sSql)
+	F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSql,V.Local.sSql)
+	F.Intrinsic.Control.If(V.Local.sSql.Length,>,0)
+		F.Intrinsic.Math.Div(V.Local.fRunTime,V.Local.sSql.Float,V.Local.fRunTime)
+		F.Intrinsic.String.Build("Select Distinct Amt_Alt_Cost From V_Inventory_Mstr Where Part = '{0}' and Amt_Alt_Cost > 0",V.Local.sPart.Trim,V.Local.sSql)
+		F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSql,V.Local.sSql)
+		F.Intrinsic.Control.If(V.Local.sSql.Length,>,0)
+'			F.Intrinsic.Math.Mult(V.Local.sSql.Float,V.Local.fRunTime,V.Local.fRate)
+			V.Local.fRate.Set(V.Local.sSql.Float)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Build("Select Distinct Cost From V_Inventory_Cost Where Part = '{0}' and Cost > 0",V.Local.sPart.Trim,V.Local.sSql)
+			F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSql,V.Local.sSql)
+			F.Intrinsic.Control.If(V.Local.sSql.Length,>,0)
+'				F.Intrinsic.Math.Mult(V.Local.sSql.Float,V.Local.fRunTime,V.Local.fRate)
+				V.Local.fRate.Set(V.Local.sSql.Float)
+			F.Intrinsic.Control.Else
+				V.Local.fRate.Set(0)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Build("Select Distinct Amt_Alt_Cost From V_Inventory_Mstr Where Part = '{0}' and Amt_Alt_Cost > 0",V.Local.sPart.Trim,V.Local.sSql)
+		F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSql,V.Local.sSql)
+		F.Intrinsic.Control.If(V.Local.sSql.Length,>,0)
+			V.Local.fRate.Set(V.Local.sSql.Float)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Build("Select Distinct Cost From V_Inventory_Cost Where Part = '{0}' and Cost > 0",V.Local.sPart.Trim,V.Local.sSql)
+			F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSql,V.Local.sSql)
+			F.Intrinsic.Control.If(V.Local.sSql.Length,>,0)
+				V.Local.fRate.Set(V.Local.sSql.Float)
+			F.Intrinsic.Control.Else
+				V.Local.fRate.Set(0)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	' next udt element id
+'	F.Intrinsic.Math.Add(V.Global.iLineRTR,1,V.Global.iLineRTR)
+	V.uGlobal.uRtr.RedimPreserve(0,V.Global.iLineRTR)
+
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Number.Set(V.Local.sRouter(1).Trim)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!LMO.Set("M")
+	V.uGlobal.uRtr(V.Global.iLineRTR)!RunTime.Set(V.Local.fRunTime.Format0.0000)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Part.Set(V.Local.sRouter(16))
+'	V.uGlobal.uRtr(V.Global.iLineRTR)!UM.Set(V.Local.sRet(1))
+	F.Intrinsic.Control.If(V.Local.sRet.Length,>,0)
+		V.uGlobal.uRtr(v.Global.iLineRTR)!UM.Set(V.Local.sRet(1).Trim)
+	F.Intrinsic.Control.Else
+		V.uGlobal.uRtr(v.Global.iLineRTR)!UM.Set("EA")
+	F.Intrinsic.Control.EndIf
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Sequence.Set(V.Local.sNextSeq)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Seq_Desc.Set(V.Local.sRet(2))
+''	V.uGlobal.uRtr(V.Global.iLineRTR)!Rate.Set(V.Local.sRet(3))
+'	V.uGlobal.uRtr(V.Global.iLineRTR)!Rate.Set(V.Local.sRouter(7))
+'RATE IS THE COST OF A SINGLE UNIT OF MEASURE OF MATERIAL
+'	V.uGlobal.uRtr(V.Global.iLineRTR)!Rate.Set(V.Local.sRouter(15))
+	'Our rate is MaterialCost divided by nested Weight to get price per pound
+'	f.Intrinsic.Control.If(v.Local.sRouter(17).Float,<>,0)
+'		F.Intrinsic.Math.Div(V.Local.sRouter(15).Float,V.Local.sRouter(17).Float,V.Local.fRate)
+'	f.Intrinsic.Control.Else
+'		v.Local.fRate.Set(0)
+'	f.Intrinsic.Control.EndIf
+	V.uGlobal.uRtr(v.Global.iLineRTR)!Rate.Set(V.Local.fRate.Format0.0000)
+'	V.uGlobal.uRtr(v.Global.iLineRTR)!Lead.Set(V.local.sRet(4))
+
+'ADDED LATER
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Desc.Set(V.Global.sDesc.Trim)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Desc1.Set(V.Local.sRouter(18))
+
+	' from .LIB, call ROUTERAddRecord to format the udt values for the file
+	F.Intrinsic.Control.CallSub(Routeraddrecord)
+'F.Intrinsic.Control.EndIf
+
+Program.Sub.rtrMLine.End
+
+Program.Sub.rtrLLine.Start
+
+
+V.Local.sLine.Declare(String)
+V.Local.sRouter.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.sSel.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sNextSeq.Declare(String)
+V.Local.fRunTime.Declare(Float)
+V.Local.fRate.Declare(Float)
+
+
+' QuoteItemId, PartName, MachineName, Qty, Material, UnitCost, Markup, UnitPrice, TotalPrice, PartTrueArea, NestedCuttingTime, NestedArea, PartData1,QuoteNumber,  ProcessCost, MaterialCost, PartData12, Nested Weight
+F.Intrinsic.String.Split(V.Args.ROUTER,"*!*",V.Local.sRouter)
+V.Local.sRouter.RedimPreserve(0,18)
+' QuoteItemRoutingID,RoutingName, RunTime, SetupTime, UnitCost
+F.Intrinsic.String.Split(V.Args.LINES,"*!*",V.Local.sLine)
+V.Local.sLine.RedimPreserve(0,4)
+
+' look for the workcenter
+F.Intrinsic.String.Replace(V.Local.sRouter(2),"'","''",V.Local.sPart)
+'F.Intrinsic.String.Concat(" select Machine, Standard_Cost from V_Workcenters where ucase(WC_NAME) = '",V.Local.sPart.UCase,"' ",V.Local.sSel)
+F.Intrinsic.String.Build("SELECT MACHINE, STANDARD_COST FROM V_WORKCENTERS WHERE UCASE(MACHINE) = '{0}' ",V.Local.sPart.UCase,V.Local.sSel)
+F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSel,V.Local.sRet)
+
+' part not found in inventory, skip
+F.Intrinsic.Control.If(V.Local.sRet,=,"")
+	F.Intrinsic.Control.ExitSub
+
+' wc found, create line for upload
+F.Intrinsic.Control.Else
+	' add line increment to getnext seq for line
+	F.Intrinsic.Math.Add(V.Global.iNextSeq,V.Global.iSeqMult,V.Global.iNextSeq)
+	F.Intrinsic.String.LPad(V.Global.iNextSeq,"0",6,V.Local.sNextSeq)
+
+	' next udt element id
+'	F.Intrinsic.Math.Add(V.Global.iLineRTR,1,V.Global.iLineRTR)
+	V.uGlobal.uRtr.RedimPreserve(0,V.Global.iLineRTR)
+
+'LABOR RUNTIME IS PARTS PER HOUR
+'	F.Intrinsic.Math.Mult(V.Local.sRouter(3).Float,V.Local.sRouter(10).Float,V.Local.fRunTime)
+	'TURN HOURS INTO MINUTES X QTY DIV BY 60 TO GET PARTS PER HOUR
+'	F.Intrinsic.Math.Mult(V.Local.sRouter(10),60,V.Local.fRunTime)
+'	F.Intrinsic.Math.Mult(V.Local.fRunTime,V.Local.sRouter(3),V.Local.fRunTime)
+'	F.Intrinsic.Math.Div(60,V.Local.fRunTime,V.Local.fRunTime)
+	'nestingcuttingtime is passed in seconds
+	'divide cutting time by 1 hour in seconds 3600 then devide by the quantity to get
+	'time for one piece per hour
+	f.Intrinsic.Control.If(v.Local.sRouter(10).Float,<>,0)
+		F.Intrinsic.Math.Div(3600,V.Local.sRouter(10).Float,V.Local.fRunTime)
+	f.Intrinsic.Control.Else
+		v.Local.fRunTime.Set(0)
+	f.Intrinsic.Control.EndIf
+'	F.Intrinsic.Math.Div(V.Local.sRouter(10).Float,3600,V.Local.fRunTime)
+'	F.Intrinsic.Math.Div(V.Local.fRunTime,V.Local.sRouter(3),V.Local.fRunTime)
+
+	F.Intrinsic.Math.Round(V.Local.fRunTime,4,V.Local.fRunTime)
+
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	V.Local.sRet.RedimPreserve(0,1)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Number.Set(V.Local.sRouter(1))
+	V.uGlobal.uRtr(V.Global.iLineRTR)!LMO.Set("L")
+	V.uGlobal.uRtr(V.Global.iLineRTR)!RunTime.Set(V.Local.fRunTime.Format0.0000)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Part.Set(V.LocAL.sRouter(16).Trim)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!UM.Set("HR")
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Sequence.Set(V.Local.sNextSeq)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Seq_Desc.Set(V.Local.sRouter(2))
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Desc.Set(V.Global.sDesc.Trim)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Desc1.Set(V.Local.sRouter(18))
+'	V.uGlobal.uRtr(V.Global.iLineRTR)!Rate.Set(V.Local.sRet(1))
+	'we need to mult the rate by runtime
+	V.Local.fRate.Set(V.Local.sRouter(14).Float)
+	F.Intrinsic.Math.Mult(V.Local.fRate.Format0.0000,V.Local.fRunTime.Format0.0000,V.Local.fRate)
+'	V.uGlobal.uRtr(V.Global.iLineRTR)!Rate.Set(V.Local.sRouter(14))
+	V.uGlobal.uRtr(v.Global.iLineRTR)!Rate.Set(V.Local.fRate.Format0.0000)
+
+
+'ADDED LATER
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Workcenter.Set(V.Local.sRet(0))
+
+	' from .LIB, call ROUTERAddRecord to format the udt values for the file
+	F.Intrinsic.Control.CallSub(Routeraddrecord)
+F.Intrinsic.Control.EndIf
+
+' from .LIB, call ROUTERLine to add lines to the txt file
+'F.Intrinsic.Control.CallSub(Routerline)
+
+Program.Sub.rtrLLine.End
+
+Program.Sub.getRtrSeq.Start
+
+V.Local.sSel.Declare(String)
+V.Local.sRet.Declare(String)
+
+
+' get seq increment
+V.Local.sSel.Set("select F_Long from Op_Header where ID = '401113'")
+F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSel,V.Local.sRet)
+
+' if sequence increment not found
+F.Intrinsic.Control.If(V.Local.sRet.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("Operations sequence multiple not found.")
+	F.Intrinsic.Control.CallSub(Unload)
+F.Intrinsic.Control.EndIf
+' set var to increment value
+V.Global.iSeqMult.Set(V.Local.sRet.Long)
+
+
+Program.Sub.getRtrSeq.End
+
+Program.Sub.addHdrRec.Start
+
+V.Local.sRouter.Declare(String)
+V.Local.sDescr.Declare(String)
+V.Local.sSQL.Declare(String)
+V.Local.sCust.Declare(String)
+V.Local.sTemp.Declare(String)
+
+V.Local.sCust.Set(V.Args.CUSTOMER.Trim)
+
+F.Intrinsic.String.Build("SELECT CUSTOMER FROM V_CUSTOMER_MASTER WHERE UCASE(NAME_CUSTOMER) = '{0}' ",V.Local.sCust.UCase,V.Local.sSQL)
+F.ODBC.Connection!ConGS.OpenLocalRecordsetRO("rst",V.Local.sSQL)
+F.Intrinsic.Control.If(V.ODBC.ConGS!rst.EOF,=,False)
+	V.Local.sCust.Set(V.ODBC.ConGS!rst.FieldValTrim!CUSTOMER)
+F.Intrinsic.Control.Else
+	V.Local.sCust.Set("")
+F.Intrinsic.Control.EndIf
+F.ODBC.ConGS!rst.Close
+
+F.Intrinsic.String.Split(V.Args.ROUTER,"*!*",V.Local.sRouter)
+V.Local.sRouter.RedimPreserve(0,21)
+
+'possibly pop up a screen to ask for description.
+'V.Local.sDescr.Set(V.Local.sRouter(1).Trim)
+F.Intrinsic.String.Split(V.Local.sRouter(20),".",V.Local.sTemp)
+F.Intrinsic.Control.If(V.Local.sTemp.UBound,=,0)
+	V.Local.sRouter(20).Set(V.Local.sTemp)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.If(V.Local.sRouter(20).Format*0.##,>,V.Local.sTemp(0))
+		F.Intrinsic.String.Format(V.Local.sRouter(20),0.00,V.Local.sRouter(20))
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Split(V.Local.sRouter(21),".",V.Local.sTemp)
+F.Intrinsic.Control.If(V.Local.sTemp.UBound,=,0)
+	V.Local.sRouter(21).Set(V.Local.sTemp)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.If(V.Local.sRouter(21).Format*0.##,>,V.Local.sTemp(0))
+		F.Intrinsic.String.Format(V.Local.sRouter(21),0.00,V.Local.sRouter(21))
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Build("{0}_{1}_{2}_{3}",V.Local.sRouter(4),V.Local.sRouter(19),V.Local.sRouter(20),V.Local.sRouter(21),V.Local.sTemp)
+F.Intrinsic.String.RPad(V.Local.sTemp," ",30,V.Local.sDescr)
+
+V.uGlobal.uRtr(V.Global.iLineRTR)!Number.Set(V.Local.sRouter(1))
+V.uGlobal.uRtr(V.Global.iLineRTR)!Desc.Set(V.Local.sDescr.Trim)
+V.uGlobal.uRtr(v.Global.iLineRTR)!UM.Set("EA")
+V.uGlobal.uRtr(V.Global.iLineRTR)!Customer.Set(V.Local.sCust)
+
+'V.uGlobal.uRtr(v.Global.iLineRTR)!Prod_Line.Set("FG")
+'Change PL to "VP"
+V.uGlobal.uRtr(v.Global.iLineRTR)!Prod_Line.Set("VP")
+V.Global.sDesc.Set(V.Local.sDescr.Trim)
+
+V.uGlobal.uRtr(V.Global.iLineRTR)!Desc1.Set(V.Local.sRouter(18))
+Program.Sub.addHdrRec.End
+
+Program.Sub.LicenseVerification.Start
+
+
+V.Local.bLicensed.Declare(Boolean)
+
+' if license is not found, the script will end
+f.Global.General.IsLicensedByModuleName("NES",v.Local.bLicensed)
+F.Intrinsic.Control.If(V.Local.bLicensed,=,False)
+	F.Intrinsic.Control.End
+
+F.Intrinsic.Control.EndIf
+
+Program.Sub.LicenseVerification.End
+
+Program.Sub.LoginCredentials.Start
+
+V.Local.sSel.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sHold.Declare(String)
+V.Local.sVal.Declare(String)
+V.Local.bRet.Declare(Boolean)
+V.Local.sFile.Declare(String)
+V.Local.iFor.Declare(Long)
+V.Local.iFoundRecs.Declare(Long)
+
+' see if the credential file is found
+F.Intrinsic.String.Build("{0}\SNLIC.dat",V.Caller.FilesDir,V.Local.sFile)
+F.Intrinsic.File.Exists(V.Local.sFile,V.Local.bRet)
+
+' if the file is found, look for the COMPLETE line
+F.Intrinsic.Control.If(V.Local.bRet,=,True)
+	F.Intrinsic.File.File2String(V.Local.sFile,V.Local.sRet)
+	F.Intrinsic.String.Split(V.Local.sRet,V.Ambient.NewLine,V.Local.sRet)
+	F.Intrinsic.Control.For(V.Local.iFor,V.Local.sRet.LBound,V.Local.sRet.UBound,1)
+		F.Intrinsic.String.Split(V.Local.sRet(v.Local.iFor),"::",V.Local.sHold)
+		V.Local.sHold.RedimPreserve(0,1)
+		F.Intrinsic.Control.SelectCase(V.Local.sHold(0).ucase)
+		F.Intrinsic.Control.Case("PROVIDER")
+			V.Global.sProvider.Set(V.Local.sHold(1))
+			F.Intrinsic.Math.Add(V.Local.iFoundRecs,1,V.Local.iFoundRecs)
+		F.Intrinsic.Control.Case("SERVER")
+			V.Global.sServer.Set(V.Local.sHold(1))
+			F.Intrinsic.Math.Add(V.Local.iFoundRecs,1,V.Local.iFoundRecs)
+		F.Intrinsic.Control.Case("DATABASE")
+			V.Global.sDatabase.Set(V.Local.sHold(1))
+			F.Intrinsic.Math.Add(V.Local.iFoundRecs,1,V.Local.iFoundRecs)
+		F.Intrinsic.Control.Case("UID")
+			V.Global.sUID.Set(V.Local.sHold(1))
+			F.Intrinsic.Math.Add(V.Local.iFoundRecs,1,V.Local.iFoundRecs)
+		F.Intrinsic.Control.Case("PWD")
+			V.Global.sPWD.Set(V.Local.sHold(1))
+			F.Intrinsic.Math.Add(V.Local.iFoundRecs,1,V.Local.iFoundRecs)
+		F.Intrinsic.Control.EndSelect
+	F.Intrinsic.Control.Next(V.Local.iFor)
+F.Intrinsic.Control.EndIf
+
+' if the path is found,send it back.  otherwise end the script
+F.Intrinsic.Control.If(V.Local.iFoundRecs,<>,5)
+	F.Intrinsic.UI.Msgbox("Data connection credentials not found.")
+	F.Intrinsic.Control.End
+
+F.Intrinsic.Control.EndIf
+
+
+Program.Sub.LoginCredentials.End
+
+program.sub.cmdok_click.start
+
+
+Gui.Form2..Visible(false)
+
+F.Intrinsic.Control.SelectCase(V.Global.sType)
+F.Intrinsic.Control.Case("Q")
+	F.Intrinsic.Control.CallSub(Loadsnquotes)
+
+F.Intrinsic.Control.Case("R")
+	F.Intrinsic.Control.CallSub(Routerclear)
+	F.Intrinsic.Control.CallSub(Loadsnrouter)
+
+F.Intrinsic.Control.EndSelect
+
+' if the import was attempted, the COMPLETE will be 0, if not (maybe they hit NO to load just a header), the return will be 1
+F.Intrinsic.Control.SelectCase(V.Args.COMPLETE)
+F.Intrinsic.Control.Case(1)
+	Gui.Form2..Visible(True)
+
+F.Intrinsic.Control.CaseElse
+	Gui.Form2..ClearGroup(1)
+	Gui.SS_Form1..Visible(True)
+F.Intrinsic.Control.EndSelect
+
+program.sub.cmdok_click.End
+
+program.sub.cmdbegbrwse_click.start	
+
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(Long)
+
+F.Intrinsic.Control.SelectCase(V.Global.sType)
+F.Intrinsic.Control.Case("Q")
+	F.Intrinsic.String.Split("Quote*!*Customer*!*Quote Date*!*Due Date*!* Customer PO*!* Salesperson","*!*",V.Local.sTitles)
+	F.Intrinsic.String.Split("1500*!*1500*!*1500*!*1500*!*1500*!*1500","*!*",V.Local.iWidths)
+	F.Intrinsic.UI.Browser("Quote","ConSN","select QuoteNumber, CustomerID, QuoteDate, DueDate, CustomerPO, SalesRep from "Quote" order by QuoteNumber",V.Local.sTitles,V.Local.iWidths,V.Local.sRet)
+
+
+F.Intrinsic.Control.Case("R")
+	F.Intrinsic.String.Split("Quote*!*Router","*!*",V.Local.sTitles)
+	F.Intrinsic.String.Split("1500*!*1500","*!*",V.Local.iWidths)
+	F.Intrinsic.UI.Browser("Router","ConSN","select distinct QuoteNumber, PartName from QuoteItems order by QuoteNumber ",V.Local.sTitles,V.Local.iWidths,V.Local.sRet)
+
+F.Intrinsic.Control.EndSelect
+
+F.Intrinsic.Control.If(V.Local.sRet.Trim,=,"***CANCEL***")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	V.Local.sRet.RedimPreserve(0,5)
+	Gui.Form2.txt1.Text(V.Local.sRet(0).Trim)
+	Gui.Form2.txt2.Text(V.Local.sRet(0).Trim)
+F.Intrinsic.Control.EndIf
+
+program.sub.cmdbegbrwse_click.End
+
+program.sub.cmdendbrwse_click.start
+
+
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(Long)
+
+F.Intrinsic.Control.SelectCase(V.Global.sType)
+F.Intrinsic.Control.Case("Q")
+	F.Intrinsic.String.Split("Quote*!*Customer*!*Quote Date*!*Due Date*!* Customer PO*!* Salesperson","*!*",V.Local.sTitles)
+	F.Intrinsic.String.Split("1500*!*1500*!*1500*!*1500*!*1500*!*1500","*!*",V.Local.iWidths)
+	F.Intrinsic.UI.Browser("Quote","ConSN","select QuoteNumber, CustomerID, QuoteDate, DueDate, CustomerPO, SalesRep from "Quote" order by QuoteNumber",V.Local.sTitles,V.Local.iWidths,V.Local.sRet)
+
+
+F.Intrinsic.Control.Case("R")
+	F.Intrinsic.String.Split("Quote*!*Router","*!*",V.Local.sTitles)
+	F.Intrinsic.String.Split("1500*!*1500","*!*",V.Local.iWidths)
+	F.Intrinsic.UI.Browser("Router","ConSN","select distinct QuoteNumber,PartName from QuoteItems order by QuoteNumber ",V.Local.sTitles,V.Local.iWidths,V.Local.sRet)
+
+F.Intrinsic.Control.EndSelect
+
+F.Intrinsic.Control.If(V.Local.sRet.Trim,=,"***CANCEL***")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	V.Local.sRet.RedimPreserve(0,5)
+	Gui.Form2.txt2.Text(V.Local.sRet(0).Trim)
+F.Intrinsic.Control.EndIf
+
+program.sub.cmdendbrwse_click.End
+
+program.sub.form2_unload.start
+
+Gui.Form2..ClearGroup(1)
+Gui.Form2..Visible(false)
+Gui.SS_Form1..Visible(True)
+
+program.sub.form2_unload.End
+
+Program.Sub.rtrLLineExtra.Start
+F.Intrinsic.Control.SetErrorHandler("rtrLLineExtra_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sLine.Declare(String)
+V.Local.sRouter.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.sSel.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sNextSeq.Declare(String)
+V.Local.fRunTime.Declare(Float)
+
+
+' QuoteItemId, PartName, MachineName, Qty, Material, UnitCost, Markup, UnitPrice, TotalPrice, PartTrueArea, NestedCuttingTime, NestedArea, PartData1,QuoteNumber,  ProcessCost, MaterialCost, PartData12, NestedWeight
+F.Intrinsic.String.Split(V.Args.ROUTER,"*!*",V.Local.sRouter)
+V.Local.sRouter.RedimPreserve(0,17)
+' QuoteItemRoutingID,RoutingName, RunTime, SetupTime, UnitCost
+F.Intrinsic.String.Split(V.Args.LINES,"*!*",V.Local.sLine)
+V.Local.sLine.RedimPreserve(0,4)
+
+' look for the workcenter
+F.Intrinsic.String.Replace(V.Local.sLine(1),"'","''",V.Local.sPart)
+F.Intrinsic.String.Concat(" select Machine, Standard_Cost from V_Workcenters where ucase(WC_NAME) = '",V.Local.sPart.UCase,"' ",V.Local.sSel)
+'F.Intrinsic.String.Build("SELECT MACHINE, STANDARD_COST FROM V_WORKCENTERS WHERE UCASE(MACHINE) = '{0}' ",V.Local.sPart.UCase,V.Local.sSel)
+F.ODBC.Connection!ConGS.ExecuteAndReturn(V.Local.sSel,V.Local.sRet)
+
+' part not found in inventory, skip
+F.Intrinsic.Control.If(V.Local.sRet,=,"")
+	F.Intrinsic.Control.ExitSub
+
+' wc found, create line for upload
+F.Intrinsic.Control.Else
+	' add line increment to getnext seq for line
+	F.Intrinsic.Math.Add(V.Global.iNextSeq,V.Global.iSeqMult,V.Global.iNextSeq)
+	F.Intrinsic.String.LPad(V.Global.iNextSeq,"0",6,V.Local.sNextSeq)
+
+	' next udt element id
+'	F.Intrinsic.Math.Add(V.Global.iLineRTR,1,V.Global.iLineRTR)
+	V.uGlobal.uRtr.RedimPreserve(0,V.Global.iLineRTR)
+
+'LABOR RUNTIME IS PARTS PER HOUR
+'	F.Intrinsic.Math.Mult(V.Local.sRouter(3).Float,V.Local.sRouter(10).Float,V.Local.fRunTime)
+	'TURN HOURS INTO MINUTES X QTY DIV BY 60 TO GET PARTS PER HOUR
+'	F.Intrinsic.Math.Mult(V.Local.sRouter(10),60,V.Local.fRunTime)
+'	F.Intrinsic.Math.Mult(V.Local.fRunTime,V.Local.sRouter(3),V.Local.fRunTime)
+'	F.Intrinsic.Math.Div(60,V.Local.fRunTime,V.Local.fRunTime)
+	'nestingcuttingtime is passed in seconds
+	'divide cutting time by 1 hour in seconds 3600 then devide by the quantity to get
+	'time for one piece per hour
+'	F.Intrinsic.Math.Div(3600,V.Local.sLine(2),V.Local.fRunTime)
+	f.Intrinsic.Control.If(v.Local.sLine(2).Float,<>,0)
+		F.Intrinsic.Math.Div(60,V.Local.sLine(2).Float,V.Local.fRunTime)
+	f.Intrinsic.Control.Else
+		v.Local.fRunTime.Set(0)
+	f.Intrinsic.Control.EndIf
+'	F.Intrinsic.Math.Div(V.Local.fRunTime,V.Local.sRouter(3).Float,V.Local.fRunTime)
+'	F.Intrinsic.Math.Div(V.Local.fRunTime,V.Local.sRouter(3),V.Local.fRunTime)
+	F.Intrinsic.Math.Round(V.Local.fRunTime,4,V.Local.fRunTime)
+	F.Intrinsic.String.Split(V.Local.sRet,"#$#",V.Local.sRet)
+	V.Local.sRet.RedimPreserve(0,0)
+	F.Intrinsic.String.Split(V.Local.sRet(0),"*!*",V.Local.sRet)
+	V.Local.sRet.RedimPreserve(0,1)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Number.Set(V.Local.sRouter(1))
+	V.uGlobal.uRtr(V.Global.iLineRTR)!LMO.Set("L")
+	V.uGlobal.uRtr(V.Global.iLineRTR)!RunTime.Set(V.Local.fRunTime.Format0.0000)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Part.Set(V.LocAL.sRouter(16).Trim)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!UM.Set("HR")
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Sequence.Set(V.Local.sNextSeq)
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Seq_Desc.Set(V.Local.sLine(1))
+'	V.uGlobal.uRtr(V.Global.iLineRTR)!Rate.Set(V.Local.sRet(1))
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Rate.Set(V.Local.sRet(1))
+
+
+'ADDED LATER
+	V.uGlobal.uRtr(V.Global.iLineRTR)!Workcenter.Set(V.Local.sRet(0))
+
+	' from .LIB, call ROUTERAddRecord to format the udt values for the file
+	F.Intrinsic.Control.CallSub(Routeraddrecord)
+F.Intrinsic.Control.EndIf
+
+' from .LIB, call ROUTERLine to add lines to the txt file
+'F.Intrinsic.Control.CallSub(Routerline)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("rtrLLineExtra_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3849_SN_Qte_Rtr_Import-MET.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.rtrLLineExtra.End
+
+Program.Sub.Attach_Image.Start
+'link TYPE = 00037 is Router/Seq
+V.Local.sType.Declare(String,"00037")
+V.Local.sGrpID.Declare(String,"1")
+V.Local.sFileFromPath.Declare(String,"\\sigma\SigmaNest\SNData\PartSaveOutput")
+V.Local.sFileFrom.Declare
+V.Local.sFileToPath.Declare
+V.Local.sFileTo.Declare
+V.Local.sFileName.Declare
+V.Local.bExists.Declare
+V.Local.sRouter.Declare
+V.Local.sKey.Declare
+V.Local.iActiveLinkID.Declare
+V.Local.sSigmaDir.Declare
+
+V.Local.sRouter.Set(V.uGlobal.uRtr(1)!Number.Trim)
+F.Intrinsic.String.Build("{0}.bmp",V.Local.sRouter,V.Local.sFileName)
+
+'set file From location
+F.Intrinsic.String.Build("{0}\{1}",V.Local.sFileFromPath,V.Local.sFileName,V.Local.sFileFrom)
+'set file To location
+F.Intrinsic.String.Build("{0}\SIGMA_NEST_IMAGES",V.Caller.FilesDir,V.Local.sSigmaDir)
+F.Intrinsic.String.Build("{0}\{1}",V.Local.sSigmaDir,V.Local.sFileName,V.Local.sFileTo)
+
+'Check for file to copy from
+F.Intrinsic.File.Exists(V.Local.sFileFrom,V.Local.bExists)
+'If file exists then run
+F.Intrinsic.Control.If(V.Local.bExists,=,True)	
+
+	'Check for Sigma folder
+	F.Intrinsic.File.DirExists(V.Local.sSigmaDir,V.Local.bExists)
+		F.Intrinsic.Control.If(V.Local.bExists,=,FalsE)
+			F.Intrinsic.File.CreateDir(V.Local.sSigmaDir)
+		F.Intrinsic.Control.EndIf
+	
+	'Copy file to Global\Custom folder
+	F.Intrinsic.File.CopyFile(V.Local.sFileFrom,V.Local.sFileTo)
+	
+	'LINK_DATA.LINK_ID = use F.G.DocConl.CreatReference	 'LINK_DATA.TYPE = '00037 (Router seq)	'LINK_DATA.ID = (20 char part number + 6 char seq number)
+	
+	'Right Pad router with spaces to 20 char
+	F.Intrinsic.String.RPad(V.Local.sRouter," ",20,V.Local.sRouter)
+	'Add Router Seq 000200 to router
+	F.Intrinsic.String.Build("{0}000200",V.Local.sRouter,V.Local.sRouter)
+	'Set Router number and seq 200 to key value
+	V.Local.sKey.Set(V.Local.sRouter)
+	
+	'Create reference will create a new record in the Link_Data table for the key and type, or return the existing ID.
+	'Function.Global.DocumentControl.CreateReference(key, type, ID)
+	F.Global.DocumentControl.CreateReference(V.Local.sKey,V.Local.sType,V.Local.iActiveLinkID)
+	
+	'Add Document
+	'F.Global.DocumentControl.AddDocument(link ID, file path, description, group, user, file type, Non-Rev flag )
+	F.Global.DocumentControl.AddDocument(V.Local.iActiveLinkID,V.Local.sFileTo,"Sigma Nest Image","1", V.Caller.User,"BMP","False")
+
+F.Intrinsic.Control.EndIf
+
+Program.Sub.Attach_Image.End
+
+Program.Sub.Comments.Start
+${$0$}$$}$$}$12:00:00 AM$}$False
+Program.Sub.Comments.End
